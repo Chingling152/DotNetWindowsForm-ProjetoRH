@@ -215,7 +215,7 @@
             this.MinimizeBox = false;
             this.Name = "RegistroFuncionario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "RegistroFuncionario";
+            this.Text = "Registro Funcionario";
             ((System.ComponentModel.ISupportInitialize)(this.dgv_func)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
