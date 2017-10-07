@@ -1,0 +1,10 @@
+C:\Users\CSharp\source\repos\Projeto\Projeto\bin\Debug\Projeto.exe.config
+C:\Users\CSharp\source\repos\Projeto\Projeto\bin\Debug\Projeto.exe
+C:\Users\CSharp\source\repos\Projeto\Projeto\bin\Debug\Projeto.pdb
+C:\Users\CSharp\source\repos\Projeto\Projeto\obj\Debug\Projeto.csprojResolveAssemblyReference.cache
+C:\Users\CSharp\source\repos\Projeto\Projeto\obj\Debug\Projeto.Properties.Resources.resources
+C:\Users\CSharp\source\repos\Projeto\Projeto\obj\Debug\Projeto.Form1.resources
+C:\Users\CSharp\source\repos\Projeto\Projeto\obj\Debug\Projeto.csproj.GenerateResource.Cache
+C:\Users\CSharp\source\repos\Projeto\Projeto\obj\Debug\Projeto.csproj.CoreCompileInputs.cache
+C:\Users\CSharp\source\repos\Projeto\Projeto\obj\Debug\Projeto.exe
+C:\Users\CSharp\source\repos\Projeto\Projeto\obj\Debug\Projeto.pdb
