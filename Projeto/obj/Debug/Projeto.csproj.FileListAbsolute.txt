@@ -8,3 +8,4 @@ C:\Users\CSharp\source\repos\Projeto\Projeto\obj\Debug\Projeto.csproj.GenerateRe
 C:\Users\CSharp\source\repos\Projeto\Projeto\obj\Debug\Projeto.csproj.CoreCompileInputs.cache
 C:\Users\CSharp\source\repos\Projeto\Projeto\obj\Debug\Projeto.exe
 C:\Users\CSharp\source\repos\Projeto\Projeto\obj\Debug\Projeto.pdb
+C:\Users\CSharp\source\repos\Projeto\Projeto\obj\Debug\Projeto.Senai.Projetos.Forms.RegistroFuncionario.resources

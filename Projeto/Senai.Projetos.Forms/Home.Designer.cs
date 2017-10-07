@@ -26,11 +26,11 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.cadastroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.novoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.relatoriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dependenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.dependenciaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.relatoriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
@@ -64,8 +64,26 @@
             // novoToolStripMenuItem
             // 
             this.novoToolStripMenuItem.Name = "novoToolStripMenuItem";
-            this.novoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.novoToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.novoToolStripMenuItem.Text = "Funcionario";
+            this.novoToolStripMenuItem.Click += new System.EventHandler(this.novoToolStripMenuItem_Click);
+            // 
+            // dependenteToolStripMenuItem
+            // 
+            this.dependenteToolStripMenuItem.Name = "dependenteToolStripMenuItem";
+            this.dependenteToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.dependenteToolStripMenuItem.Text = "Dependente";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(140, 6);
+            // 
+            // dependenciaToolStripMenuItem
+            // 
+            this.dependenciaToolStripMenuItem.Name = "dependenciaToolStripMenuItem";
+            this.dependenciaToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.dependenciaToolStripMenuItem.Text = "Dependencia";
             // 
             // relatoriosToolStripMenuItem
             // 
@@ -79,23 +97,6 @@
             this.sairToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
             this.sairToolStripMenuItem.Text = "Sair";
             this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click);
-            // 
-            // dependenteToolStripMenuItem
-            // 
-            this.dependenteToolStripMenuItem.Name = "dependenteToolStripMenuItem";
-            this.dependenteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.dependenteToolStripMenuItem.Text = "Dependente";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
-            // 
-            // dependenciaToolStripMenuItem
-            // 
-            this.dependenciaToolStripMenuItem.Name = "dependenciaToolStripMenuItem";
-            this.dependenciaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.dependenciaToolStripMenuItem.Text = "Dependencia";
             // 
             // label1
             // 
@@ -119,7 +120,6 @@
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            this.pictureBox1.MouseEnter += new System.EventHandler(this.pictureBox1_MouseEnter);
             // 
             // Form1
             // 
@@ -134,6 +134,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(6);
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Projeto v. 0.0.2";

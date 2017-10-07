@@ -7,9 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Projeto.Senai.Projetos.Forms;
 
 namespace Projeto {
     public partial class Form1 : Form {
+
         public Form1() {
             InitializeComponent();
         }
@@ -22,8 +24,9 @@ namespace Projeto {
             MessageBox.Show("Desenvolvido Por Franklin","Projeto RH v.0.0.2");
         }
 
-        private void pictureBox1_MouseEnter(object sender, EventArgs e) {
-
+        private void novoToolStripMenuItem_Click(object sender, EventArgs e) {
+            RegistroFuncionario registro = new RegistroFuncionario();
+            registro.ShowDialog();
         }
     }
 }
