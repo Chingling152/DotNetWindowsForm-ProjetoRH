@@ -19,7 +19,7 @@ namespace Projeto.Senai.Projetos.Dao {
         private string titulo = null;
 
         public FuncDao(){
-            new ConectionFactory().GetConection();
+            connection = new ConectionFactory().GetConection();
         }
 
         //metodos herdados da interface IDao
@@ -53,7 +53,7 @@ namespace Projeto.Senai.Projetos.Dao {
                 MessageBox.Show(msg,titulo,MessageBoxButtons.OK,MessageBoxIcon.Information);
             }
             catch(SqlException e){
-                msg = "Erro Ao Salvar Funcionario";
+                msg = "Erro Ao Salvar Funcionario" + e.Message;
                 titulo = "Erro...";
                 MessageBox.Show(msg,titulo,MessageBoxButtons.OK,MessageBoxIcon.Error);
             }

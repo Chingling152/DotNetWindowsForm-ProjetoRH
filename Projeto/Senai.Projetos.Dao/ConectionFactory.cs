@@ -11,7 +11,7 @@ namespace Projeto.Senai.Projetos.Dao {
 
         public SqlConnection GetConection(){
             //string de conexão com banco de dados
-            string servidor = @"Data Source = .\SQLEXPRESS; Initial Catalog-Empresa;Integrated Security = true;Pooling - false ";
+            string servidor = @"Data Source = .\SQLEXPRESS; Initial Catalog=Empresa;Integrated Security = true;Pooling = false ";
 
             SqlConnection connection = new SqlConnection(servidor);
 

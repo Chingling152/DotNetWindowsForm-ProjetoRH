@@ -54,5 +54,8 @@ namespace Projeto.Senai.Projetos.Modelos {
             this.telefone = telefone;
         }
 
+        public Funcionario(){
+        }
+
     }
 }
