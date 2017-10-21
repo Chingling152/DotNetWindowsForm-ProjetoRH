@@ -11,10 +11,10 @@ using Projeto.Senai.Projetos.Forms;
 
 namespace Projeto.Senai.Projetos.Forms {
     public partial class RegistroFuncionario : Form {
+
         public RegistroFuncionario() {
             InitializeComponent();
         }
-
 
 
         private void button1_Click(object sender, EventArgs e) {

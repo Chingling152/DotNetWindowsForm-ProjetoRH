@@ -61,6 +61,7 @@
     <Compile Include="Senai.Projetos.Forms\RegistroFuncionario.Designer.cs">
       <DependentUpon>RegistroFuncionario.cs</DependentUpon>
     </Compile>
+    <Compile Include="Senai.Projetos.Modelos\Funcionario.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -92,7 +93,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Senai.Projetos.Dao\" />
-    <Folder Include="Senai.Projetos.Modelos\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\logo1.png" />
