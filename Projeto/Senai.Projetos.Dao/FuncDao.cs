@@ -29,9 +29,13 @@ namespace Projeto.Senai.Projetos.Dao {
          * Consultar***
          **************/
         public List<Funcionario> Consultar() {
+            //codigo sql armazenado numa string
             sql = "SELECT * FROM Funcionario";
+
+            //cria uma lista pra armazenar as variaveis
             List<Funcionario> funcs = new List<Funcionario>();
 
+            //tenta
             try {
                 //abre a conexão com o banco
                 connection.Open();
@@ -48,11 +52,11 @@ namespace Projeto.Senai.Projetos.Dao {
                     Funcionario f = new Funcionario();
                     //atribui valor as propriedades do objeto funcionario
                     f.ID = (long) leitor["IDFuncionario"];
-                    f.Nome_ = leitor["Nome"].ToString();
-                    f.Cpf_ = leitor["CPF"].ToString();
-                    f.Rg_ = leitor["RG"].ToString();
-                    f.Email_ = leitor["Email"].ToString();
-                    f.Telefone_ = leitor["Telefone"].ToString();
+                    f.Nome = leitor["Nome"].ToString();
+                    f.Cpf = leitor["CPF"].ToString();
+                    f.Rg = leitor["RG"].ToString();
+                    f.Email = leitor["Email"].ToString();
+                    f.Telefone = leitor["Telefone"].ToString();
                     //adciona funcionario lista de funcionarios
                     funcs.Add(f);
                 }
@@ -81,15 +85,15 @@ namespace Projeto.Senai.Projetos.Dao {
                 //cria comando sql
                 SqlCommand cmd = new SqlCommand(sql,connection);
                 //ATRIBUI VALORES A STRING SQL
-                cmd.Parameters.AddWithValue("@Nome",fun.Nome_);
-                cmd.Parameters.AddWithValue("@Cpf",fun.Cpf_);
-                cmd.Parameters.AddWithValue("@Rg",fun.Rg_);
-                cmd.Parameters.AddWithValue("@Email",fun.Email_);
-                cmd.Parameters.AddWithValue("@Telefone",fun.Telefone_);
+                cmd.Parameters.AddWithValue("@Nome",fun.Nome);
+                cmd.Parameters.AddWithValue("@Cpf",fun.Cpf);
+                cmd.Parameters.AddWithValue("@Rg",fun.Rg);
+                cmd.Parameters.AddWithValue("@Email",fun.Email);
+                cmd.Parameters.AddWithValue("@Telefone",fun.Telefone);
                 //EXECUTA A STRING SQL
                 cmd.ExecuteNonQuery();
 
-                msg = "Funcionario " + fun.Nome_ + " Salvo Com Sucesso";
+                msg = "Funcionario " + fun.Nome + " Salvo Com Sucesso";
                 titulo = "Salvo...";
 
                 MessageBox.Show(msg,titulo,MessageBoxButtons.OK,MessageBoxIcon.Information);

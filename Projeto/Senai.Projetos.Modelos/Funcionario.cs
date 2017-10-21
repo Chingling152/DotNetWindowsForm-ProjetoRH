@@ -20,27 +20,27 @@ namespace Projeto.Senai.Projetos.Modelos {
             set { id = value; }
         }
 
-        public string Nome_ {
+        public string Nome {
             get { return nome; }
             set { nome = value; }
         }
 
-        public string Cpf_ {
+        public string Cpf {
             get { return cpf; }
             set { cpf = value; }
         }
 
-        public string Rg_ {
+        public string Rg {
             get { return rg; }
             set { rg = value; }
         }
 
-        public string Email_ {
+        public string Email {
             get { return email; }
             set { email = value; }
         }
 
-        public string Telefone_ {
+        public string Telefone {
             get {return telefone ;}
             set{telefone = value ; }
         }

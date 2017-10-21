@@ -18,7 +18,6 @@ namespace Projeto.Senai.Projetos.Forms {
             InitializeComponent();
         }
 
-
         private void button1_Click(object sender, EventArgs e) {
             limpar();
         }
@@ -37,17 +36,37 @@ namespace Projeto.Senai.Projetos.Forms {
             //instancia um funcionario
 
             Funcionario funcionario = new Funcionario(){
-                Nome_ = txt_nome.Text ,
-                Cpf_ = mtxt_cpf.Text ,
-                Rg_ = txt_rg.Text,
-                Email_ = txt_email.Text,
-                Telefone_ = mtxt_tel.Text
+                Nome = txt_nome.Text ,
+                Cpf = mtxt_cpf.Text ,
+                Rg = txt_rg.Text,
+                Email = txt_email.Text,
+                Telefone = mtxt_tel.Text
             };
 
             FuncDao dao = new FuncDao();
             dao.Salvar(funcionario);
 
             limpar();
+            PrencherDados();
+        }
+
+        private void RegistroFuncionario_Load(object sender, EventArgs e) {
+            PrencherDados();
+        }
+
+        private void PrencherDados(){
+            FuncDao dao = new FuncDao();
+            dvg_func.DataSource = dao.Consultar();
+            dvg_func.Columns["ID"].Visible = false;
+            dvg_func.Columns["Rg"].Visible = false;
+        }
+
+        private void dvg_func_SelectionChanged(object sender, EventArgs e) {
+            //se alguma linha for selecionada
+                if(dvg_func.CurrentRow!=null){
+                    //pegar o id e colocar na text box de id (pode se fazer com as outras colunas da tabela)
+                    txt_id.Text = dvg_func.CurrentRow.Cells[0].Value.ToString();
+                }
         }
     }
 }

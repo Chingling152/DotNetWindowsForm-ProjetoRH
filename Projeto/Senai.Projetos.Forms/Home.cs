@@ -21,7 +21,7 @@ namespace Projeto {
         }
 
         private void pictureBox1_Click(object sender, EventArgs e) {
-            MessageBox.Show("Desenvolvido Por Franklin","Projeto RH v.0.1.0");
+            MessageBox.Show("Desenvolvido Por Franklin","Projeto RH v.0.1.1");
         }
 
         private void novoToolStripMenuItem_Click(object sender, EventArgs e) {
