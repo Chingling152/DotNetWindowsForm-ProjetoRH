@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Senai.Projetos.Forms\ConectionFactory.cs" />
+    <Compile Include="Senai.Projetos.Dao\ConectionFactory.cs" />
     <Compile Include="Senai.Projetos.Forms\Home.cs">
       <SubType>Form</SubType>
     </Compile>

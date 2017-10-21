@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Projeto.Senai.Projetos.Modelos {
-    class Funcionario {
+    class Funcionario  {
         //variaveis
         private long id;
         private string nome;

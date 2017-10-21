@@ -11,3 +11,4 @@ namespace Projeto.Senai.Projetos.Dao {
         void Excluir(T t);
     }
 }
+
