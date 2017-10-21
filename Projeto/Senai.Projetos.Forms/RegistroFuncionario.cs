@@ -20,8 +20,18 @@ namespace Projeto.Senai.Projetos.Forms {
 
 
         private void button1_Click(object sender, EventArgs e) {
-            
+            limpar();
         }
+
+        void limpar(){
+            txt_nome.Clear();
+            mtxt_cpf.Clear();
+            txt_rg.Clear();
+            txt_email.Clear();
+            mtxt_tel.Clear();
+            txt_nome.Focus();
+        }
+
 
         private void btn_salvar_Click(object sender, EventArgs e) {
             //instancia um funcionario
@@ -37,6 +47,7 @@ namespace Projeto.Senai.Projetos.Forms {
             FuncDao dao = new FuncDao();
             dao.Salvar(funcionario);
 
+            limpar();
         }
     }
 }

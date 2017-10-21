@@ -34,10 +34,10 @@
             this.btn_cancelar = new System.Windows.Forms.Button();
             this.btn_salvar = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.txt_rg = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dgv_func = new System.Windows.Forms.DataGridView();
             this.mtxt_tel = new System.Windows.Forms.MaskedTextBox();
+            this.txt_rg = new System.Windows.Forms.MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_func)).BeginInit();
             this.SuspendLayout();
             // 
@@ -147,15 +147,6 @@
             this.label4.TabIndex = 11;
             this.label4.Text = "RG";
             // 
-            // txt_rg
-            // 
-            this.txt_rg.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.txt_rg.Location = new System.Drawing.Point(302, 107);
-            this.txt_rg.MaxLength = 10;
-            this.txt_rg.Name = "txt_rg";
-            this.txt_rg.Size = new System.Drawing.Size(134, 29);
-            this.txt_rg.TabIndex = 3;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -191,16 +182,27 @@
             this.mtxt_tel.TabIndex = 5;
             this.mtxt_tel.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
+            // txt_rg
+            // 
+            this.txt_rg.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.txt_rg.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals;
+            this.txt_rg.Location = new System.Drawing.Point(302, 107);
+            this.txt_rg.Mask = "00000000000";
+            this.txt_rg.Name = "txt_rg";
+            this.txt_rg.Size = new System.Drawing.Size(134, 29);
+            this.txt_rg.TabIndex = 16;
+            this.txt_rg.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            // 
             // RegistroFuncionario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(461, 586);
+            this.Controls.Add(this.txt_rg);
             this.Controls.Add(this.mtxt_tel);
             this.Controls.Add(this.dgv_func);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.txt_rg);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btn_salvar);
             this.Controls.Add(this.btn_cancelar);
@@ -238,9 +240,9 @@
         private System.Windows.Forms.Button btn_cancelar;
         private System.Windows.Forms.Button btn_salvar;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txt_rg;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridView dgv_func;
         private System.Windows.Forms.MaskedTextBox mtxt_tel;
+        private System.Windows.Forms.MaskedTextBox txt_rg;
     }
 }

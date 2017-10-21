@@ -18,13 +18,54 @@ namespace Projeto.Senai.Projetos.Dao {
         //titulo da messagebox
         private string titulo = null;
 
+        //constructor
         public FuncDao(){
             connection = new ConectionFactory().GetConection();
         }
 
         //metodos herdados da interface IDao
+
+        /**************
+         * Consultar***
+         **************/
         public List<Funcionario> Consultar() {
-            throw new NotImplementedException();
+            sql = "SELECT * FROM Funcionario";
+            List<Funcionario> funcs = new List<Funcionario>();
+
+            try {
+                //abre a conexão com o banco
+                connection.Open();
+
+                //comando sql
+                SqlCommand cmd = new SqlCommand(sql,connection);
+
+                //cria um leitor de dados
+                SqlDataReader leitor = cmd.ExecuteReader();
+                    
+                //enquanto o leitor tiver dados para ler
+                while(leitor.Read()){
+                    //cria um novo objeto do tipo funcionario
+                    Funcionario f = new Funcionario();
+                    //atribui valor as propriedades do objeto funcionario
+                    f.ID = (long) leitor["IDFuncionario"];
+                    f.Nome_ = leitor["Nome"].ToString();
+                    f.Cpf_ = leitor["CPF"].ToString();
+                    f.Rg_ = leitor["RG"].ToString();
+                    f.Email_ = leitor["Email"].ToString();
+                    f.Telefone_ = leitor["Telefone"].ToString();
+                    //adciona funcionario lista de funcionarios
+                    funcs.Add(f);
+                }
+            } 
+            catch(SqlException e){
+                msg = "Erro Ao Consultar Funcionarios Cadastrados \n" +e.Message;
+                titulo = "Erro...";
+                MessageBox.Show(msg,titulo,MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }           
+            finally {
+                connection.Close();
+            }
+            return funcs;
         }
 
         public void Excluir(Funcionario fun) {
@@ -33,6 +74,7 @@ namespace Projeto.Senai.Projetos.Dao {
 
         public void Salvar(Funcionario fun) {
             try{
+                //seta a string como um comando de sql
                 sql = "INSERT INTO Funcionario(Nome,Cpf,Rg,Email,Telefone) VALUES(@Nome,@Cpf,@Rg,@Email,@Telefone)";
                 //abre uma conexão com o banco de dados
                 connection.Open();
