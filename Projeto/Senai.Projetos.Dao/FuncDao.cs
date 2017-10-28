@@ -8,7 +8,7 @@ using Projeto.Senai.Projetos.Modelos;
 using System.Data.SqlClient;
 
 namespace Projeto.Senai.Projetos.Dao {
-    class FuncDao : IDao<Funcionario> {
+    class FuncDao : IDao<Funcionario> { // ele herda da InterfaceDao
         //conexão com o banco de dados
         private SqlConnection connection;
         //intrução sql
@@ -37,7 +37,7 @@ namespace Projeto.Senai.Projetos.Dao {
 
             //tenta
             try {
-                //abre a conexão com o banco
+                //abrir a conexão com o banco
                 connection.Open();
 
                 //comando sql
@@ -49,15 +49,16 @@ namespace Projeto.Senai.Projetos.Dao {
                 //enquanto o leitor tiver dados para ler
                 while(leitor.Read()){
                     //cria um novo objeto do tipo funcionario
-                    Funcionario f = new Funcionario();
-                    //atribui valor as propriedades do objeto funcionario
-                    f.ID = (long) leitor["IDFuncionario"];
-                    f.Nome = leitor["Nome"].ToString();
-                    f.Cpf = leitor["CPF"].ToString();
-                    f.Rg = leitor["RG"].ToString();
-                    f.Email = leitor["Email"].ToString();
-                    f.Telefone = leitor["Telefone"].ToString();
-                    //adciona funcionario lista de funcionarios
+                    Funcionario f = new Funcionario(){
+                        //atribui valor as propriedades do objeto funcionario
+                        ID = (long) leitor["IDFuncionario"],
+                        Nome = leitor["Nome"].ToString(),
+                        Cpf = leitor["CPF"].ToString(),
+                        Rg = leitor["RG"].ToString(),
+                        Email = leitor["Email"].ToString(),
+                        Telefone = leitor["Telefone"].ToString()
+                    };
+                    //adiciona funcionario lista de funcionarios
                     funcs.Add(f);
                 }
             } 
@@ -73,7 +74,41 @@ namespace Projeto.Senai.Projetos.Dao {
         }
 
         public void Excluir(Funcionario fun) {
-            throw new NotImplementedException();
+            //instrução sql
+            sql = "DELETE FROM Funcionario WHERE IDFuncionario = @id";
+
+            try{
+                //abre a conexão com o banco de dados
+                connection.Open();
+
+                //cria um comando sql
+                SqlCommand cmd = new SqlCommand(sql,connection);
+
+                //adiciona valor ao parametro @ID
+                cmd.Parameters.AddWithValue("@id",fun.ID);
+
+                //executa o comando sql no banco de dados
+                cmd.ExecuteNonQuery();
+
+                //mensagem de feedback
+                msg = "Funcionario" + fun.Nome + "Excluido Com Sucesso";
+                titulo = "Sucesso";
+
+                //MESSAGEBOX
+                MessageBox.Show(msg,titulo,MessageBoxButtons.OK,MessageBoxIcon.Information);
+
+            } 
+            catch(SqlException ex){
+                //mensagem de erro 
+                msg = "Erro Ao Excluir Funcionario/n" + ex.Message;
+                titulo = "Erro...";
+
+                MessageBox.Show(msg,titulo,MessageBoxButtons.OK,MessageBoxIcon.Error);
+            } 
+            finally{
+                //fecha a conexão com o banco de dados
+                connection.Close();
+            }
         }
 
         public void Salvar(Funcionario fun) {

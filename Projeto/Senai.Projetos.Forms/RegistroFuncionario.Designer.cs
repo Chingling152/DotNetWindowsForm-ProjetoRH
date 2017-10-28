@@ -77,7 +77,7 @@
             this.mtxt_cpf.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.mtxt_cpf.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals;
             this.mtxt_cpf.Location = new System.Drawing.Point(387, 28);
-            this.mtxt_cpf.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.mtxt_cpf.Margin = new System.Windows.Forms.Padding(2);
             this.mtxt_cpf.Mask = "000,000,000-00";
             this.mtxt_cpf.Name = "mtxt_cpf";
             this.mtxt_cpf.Size = new System.Drawing.Size(122, 26);
@@ -90,7 +90,7 @@
             this.txt_id.Cursor = System.Windows.Forms.Cursors.No;
             this.txt_id.Enabled = false;
             this.txt_id.Location = new System.Drawing.Point(11, 29);
-            this.txt_id.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_id.Margin = new System.Windows.Forms.Padding(2);
             this.txt_id.Name = "txt_id";
             this.txt_id.ReadOnly = true;
             this.txt_id.Size = new System.Drawing.Size(122, 26);
@@ -101,7 +101,7 @@
             // 
             this.txt_nome.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.txt_nome.Location = new System.Drawing.Point(137, 29);
-            this.txt_nome.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_nome.Margin = new System.Windows.Forms.Padding(2);
             this.txt_nome.Name = "txt_nome";
             this.txt_nome.Size = new System.Drawing.Size(246, 26);
             this.txt_nome.TabIndex = 1;
@@ -110,7 +110,7 @@
             // 
             this.txt_email.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.txt_email.Location = new System.Drawing.Point(11, 78);
-            this.txt_email.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_email.Margin = new System.Windows.Forms.Padding(2);
             this.txt_email.Name = "txt_email";
             this.txt_email.Size = new System.Drawing.Size(248, 26);
             this.txt_email.TabIndex = 3;
@@ -129,11 +129,11 @@
             // 
             this.btn_cancelar.BackColor = System.Drawing.SystemColors.Control;
             this.btn_cancelar.Location = new System.Drawing.Point(393, 108);
-            this.btn_cancelar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_cancelar.Margin = new System.Windows.Forms.Padding(2);
             this.btn_cancelar.Name = "btn_cancelar";
             this.btn_cancelar.Size = new System.Drawing.Size(116, 47);
             this.btn_cancelar.TabIndex = 7;
-            this.btn_cancelar.Text = "Cancelar ";
+            this.btn_cancelar.Text = "Excluir";
             this.btn_cancelar.UseVisualStyleBackColor = false;
             this.btn_cancelar.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -141,7 +141,7 @@
             // 
             this.btn_salvar.BackColor = System.Drawing.SystemColors.Control;
             this.btn_salvar.Location = new System.Drawing.Point(263, 108);
-            this.btn_salvar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_salvar.Margin = new System.Windows.Forms.Padding(2);
             this.btn_salvar.Name = "btn_salvar";
             this.btn_salvar.Size = new System.Drawing.Size(120, 47);
             this.btn_salvar.TabIndex = 6;
@@ -197,7 +197,7 @@
             this.mtxt_tel.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.mtxt_tel.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals;
             this.mtxt_tel.Location = new System.Drawing.Point(263, 78);
-            this.mtxt_tel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.mtxt_tel.Margin = new System.Windows.Forms.Padding(2);
             this.mtxt_tel.Mask = "(99) 0000-0000";
             this.mtxt_tel.Name = "mtxt_tel";
             this.mtxt_tel.Size = new System.Drawing.Size(120, 26);
@@ -209,7 +209,7 @@
             this.txt_rg.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.txt_rg.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals;
             this.txt_rg.Location = new System.Drawing.Point(387, 78);
-            this.txt_rg.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_rg.Margin = new System.Windows.Forms.Padding(2);
             this.txt_rg.Mask = "0000000000";
             this.txt_rg.Name = "txt_rg";
             this.txt_rg.Size = new System.Drawing.Size(122, 26);
@@ -239,7 +239,7 @@
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "RegistroFuncionario";
