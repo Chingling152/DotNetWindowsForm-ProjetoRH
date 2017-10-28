@@ -23,7 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -39,6 +39,7 @@
             this.dvg_func = new System.Windows.Forms.DataGridView();
             this.mtxt_tel = new System.Windows.Forms.MaskedTextBox();
             this.txt_rg = new System.Windows.Forms.MaskedTextBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dvg_func)).BeginInit();
             this.SuspendLayout();
             // 
@@ -83,6 +84,7 @@
             this.mtxt_cpf.Size = new System.Drawing.Size(122, 26);
             this.mtxt_cpf.TabIndex = 2;
             this.mtxt_cpf.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.mtxt_cpf.Leave += new System.EventHandler(this.mtxt_cpf_Leave);
             // 
             // txt_id
             // 
@@ -128,7 +130,7 @@
             // btn_cancelar
             // 
             this.btn_cancelar.BackColor = System.Drawing.SystemColors.Control;
-            this.btn_cancelar.Location = new System.Drawing.Point(393, 108);
+            this.btn_cancelar.Location = new System.Drawing.Point(263, 108);
             this.btn_cancelar.Margin = new System.Windows.Forms.Padding(2);
             this.btn_cancelar.Name = "btn_cancelar";
             this.btn_cancelar.Size = new System.Drawing.Size(116, 47);
@@ -140,7 +142,7 @@
             // btn_salvar
             // 
             this.btn_salvar.BackColor = System.Drawing.SystemColors.Control;
-            this.btn_salvar.Location = new System.Drawing.Point(263, 108);
+            this.btn_salvar.Location = new System.Drawing.Point(139, 108);
             this.btn_salvar.Margin = new System.Windows.Forms.Padding(2);
             this.btn_salvar.Name = "btn_salvar";
             this.btn_salvar.Size = new System.Drawing.Size(120, 47);
@@ -174,8 +176,8 @@
             this.dvg_func.AllowUserToAddRows = false;
             this.dvg_func.AllowUserToDeleteRows = false;
             this.dvg_func.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.NullValue = "-";
-            this.dvg_func.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.NullValue = "-";
+            this.dvg_func.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dvg_func.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dvg_func.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dvg_func.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -216,12 +218,24 @@
             this.txt_rg.TabIndex = 5;
             this.txt_rg.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.Control;
+            this.button1.Location = new System.Drawing.Point(387, 108);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(120, 47);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "Limpar";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
             // RegistroFuncionario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(516, 475);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.txt_rg);
             this.Controls.Add(this.mtxt_tel);
             this.Controls.Add(this.dvg_func);
@@ -269,5 +283,6 @@
         private System.Windows.Forms.DataGridView dvg_func;
         private System.Windows.Forms.MaskedTextBox mtxt_tel;
         private System.Windows.Forms.MaskedTextBox txt_rg;
+        private System.Windows.Forms.Button button1;
     }
 }

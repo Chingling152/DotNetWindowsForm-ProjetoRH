@@ -25,9 +25,6 @@ namespace Projeto.Senai.Projetos.Dao {
 
         //metodos herdados da interface IDao
 
-        /**************
-         * Consultar***
-         **************/
         public List<Funcionario> Consultar() {
             //codigo sql armazenado numa string
             sql = "SELECT * FROM Funcionario";
@@ -91,7 +88,7 @@ namespace Projeto.Senai.Projetos.Dao {
                 cmd.ExecuteNonQuery();
 
                 //mensagem de feedback
-                msg = "Funcionario" + fun.Nome + "Excluido Com Sucesso";
+                msg = "Funcionario " + fun.Nome + " Excluido Com Sucesso";
                 titulo = "Sucesso";
 
                 //MESSAGEBOX
@@ -112,14 +109,23 @@ namespace Projeto.Senai.Projetos.Dao {
         }
 
         public void Salvar(Funcionario fun) {
-            try{
+
+            if(fun.ID != 0){
+                //atualiza se não for igual a 0
+                sql = "UPDATE Funcionario SET Nome=@Nome,Cpf=@Cpf,Rg=@Rg,Email=@Email,Telefone=@Telefone WHERE IDFuncionario = @ID";
+            }else{
+                //cria for igual a 0 
                 //seta a string como um comando de sql
                 sql = "INSERT INTO Funcionario(Nome,Cpf,Rg,Email,Telefone) VALUES(@Nome,@Cpf,@Rg,@Email,@Telefone)";
+            }
+
+            try{               
                 //abre uma conexão com o banco de dados
                 connection.Open();
                 //cria comando sql
                 SqlCommand cmd = new SqlCommand(sql,connection);
                 //ATRIBUI VALORES A STRING SQL
+                cmd.Parameters.AddWithValue("@ID", fun.ID);
                 cmd.Parameters.AddWithValue("@Nome",fun.Nome);
                 cmd.Parameters.AddWithValue("@Cpf",fun.Cpf);
                 cmd.Parameters.AddWithValue("@Rg",fun.Rg);
@@ -141,6 +147,55 @@ namespace Projeto.Senai.Projetos.Dao {
             finally{
                 connection.Close();
             }
+        }
+
+        public Funcionario Consulta(string par){
+            //comando sql
+            sql = "SELECT * FROM Funcionario WHERE Cpf = @Cpf";
+
+            //cria um novo objeto do tipo funcionario (com valor nulo pra poder )
+            Funcionario f = null;
+
+            //tenta
+            try {
+                //abrir uma conexão com o banco de dados
+                connection.Open();
+
+                //  Criar um comando sql na conexão connection
+                SqlCommand cmd = new SqlCommand(sql,connection);
+
+                //adciona parametros no comando sql
+                cmd.Parameters.AddWithValue("@Cpf",par);
+
+                //leitor sql (recebe os dados do banco de dados)
+                //que esta sendo executado pelo cmd
+                SqlDataReader leitor = cmd.ExecuteReader();
+
+                //enquanto tiver dados para ler 
+                while (leitor.Read()){
+                    //se tem alguma linha que contenha a coluna cpf 
+                    if(par.Equals(leitor["Cpf"].ToString())){
+                        //cria um objeto na variavel nula
+                        f = new Funcionario() {
+                            //atribui valor as propriedades do objeto funcionario
+                            ID = (long)leitor["IDFuncionario"],
+                            Nome = leitor["Nome"].ToString(),
+                            Cpf = leitor["CPF"].ToString(),
+                            Rg = leitor["RG"].ToString(),
+                            Email = leitor["Email"].ToString(),
+                            Telefone = leitor["Telefone"].ToString()
+                        };
+                    }
+                }
+            } catch (SqlException ex){
+                msg = "Erro Ao Consultar Funcionario \n"+ex.Message;
+                titulo = "Erro...";
+                MessageBox.Show(msg,titulo,MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }finally{
+                connection.Close();
+            }
+            return f;
+            
         }
     }
 }

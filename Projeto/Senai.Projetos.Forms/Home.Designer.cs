@@ -73,6 +73,7 @@
             this.dependenteToolStripMenuItem.Name = "dependenteToolStripMenuItem";
             this.dependenteToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.dependenteToolStripMenuItem.Text = "Dependente";
+            this.dependenteToolStripMenuItem.Click += new System.EventHandler(this.dependenteToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -84,6 +85,7 @@
             this.dependenciaToolStripMenuItem.Name = "dependenciaToolStripMenuItem";
             this.dependenciaToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.dependenciaToolStripMenuItem.Text = "Dependencia";
+            this.dependenciaToolStripMenuItem.Click += new System.EventHandler(this.dependenciaToolStripMenuItem_Click);
             // 
             // relatoriosToolStripMenuItem
             // 
@@ -138,6 +140,7 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Projeto ";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

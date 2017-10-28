@@ -15,18 +15,31 @@ namespace Projeto {
         public Form1() {
             InitializeComponent();
         }
-
+        //BOTÃO SAIR
         private void sairToolStripMenuItem_Click(object sender, EventArgs e) {
             Application.Exit();
         }
-
+        //CREDITOS
         private void pictureBox1_Click(object sender, EventArgs e) {
-            MessageBox.Show("Desenvolvido Por Franklin","Projeto RH v.0.1.2");
+            MessageBox.Show("Desenvolvido Por Franklin","Projeto RH v.0.1.3");
         }
-
+        //MENU REGISTRO DOS FUNCIONARIOS
         private void novoToolStripMenuItem_Click(object sender, EventArgs e) {
             RegistroFuncionario registro = new RegistroFuncionario();
             registro.ShowDialog();
+        }
+        //MENU REGISTRO DOS DEPENDENTES
+        private void dependenteToolStripMenuItem_Click(object sender, EventArgs e) {
+            
+        }
+        //MENU REGISTRO DAS DEPENDENCIAS
+        private void dependenciaToolStripMenuItem_Click(object sender, EventArgs e) {
+            DependenciaForm dependencia = new DependenciaForm();
+            dependencia.ShowDialog();
+        }
+
+        private void Form1_Load(object sender, EventArgs e) {
+
         }
     }
 }

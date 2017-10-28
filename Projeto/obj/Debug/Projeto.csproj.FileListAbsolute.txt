@@ -9,3 +9,4 @@ C:\Users\CSharp\source\repos\Projeto\Projeto\obj\Debug\Projeto.csproj.CoreCompil
 C:\Users\CSharp\source\repos\Projeto\Projeto\obj\Debug\Projeto.exe
 C:\Users\CSharp\source\repos\Projeto\Projeto\obj\Debug\Projeto.pdb
 C:\Users\CSharp\source\repos\Projeto\Projeto\obj\Debug\Projeto.Senai.Projetos.Forms.RegistroFuncionario.resources
+C:\Users\CSharp\source\repos\Projeto\Projeto\obj\Debug\Projeto.Senai.Projetos.Forms.DependenciaForm.resources
