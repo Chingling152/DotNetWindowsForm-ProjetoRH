@@ -25,7 +25,7 @@
         private void InitializeComponent() {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txt_id = new System.Windows.Forms.TextBox();
             this.txt_desc = new System.Windows.Forms.TextBox();
             this.dgv_dep = new System.Windows.Forms.DataGridView();
             this.btn_salvar = new System.Windows.Forms.Button();
@@ -52,14 +52,14 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Descrição";
             // 
-            // textBox1
+            // txt_id
             // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(16, 37);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(113, 29);
-            this.textBox1.TabIndex = 2;
+            this.txt_id.Enabled = false;
+            this.txt_id.Location = new System.Drawing.Point(16, 37);
+            this.txt_id.Name = "txt_id";
+            this.txt_id.ReadOnly = true;
+            this.txt_id.Size = new System.Drawing.Size(113, 29);
+            this.txt_id.TabIndex = 2;
             // 
             // txt_desc
             // 
@@ -76,12 +76,17 @@
             this.dgv_dep.AllowUserToResizeColumns = false;
             this.dgv_dep.AllowUserToResizeRows = false;
             this.dgv_dep.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgv_dep.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dgv_dep.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_dep.Location = new System.Drawing.Point(16, 179);
+            this.dgv_dep.MultiSelect = false;
             this.dgv_dep.Name = "dgv_dep";
             this.dgv_dep.ReadOnly = true;
+            this.dgv_dep.RowHeadersVisible = false;
+            this.dgv_dep.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_dep.Size = new System.Drawing.Size(350, 198);
             this.dgv_dep.TabIndex = 4;
+            this.dgv_dep.SelectionChanged += new System.EventHandler(this.dgv_dep_SelectionChanged);
             // 
             // btn_salvar
             // 
@@ -130,7 +135,7 @@
             this.Controls.Add(this.btn_salvar);
             this.Controls.Add(this.dgv_dep);
             this.Controls.Add(this.txt_desc);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txt_id);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
@@ -149,7 +154,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txt_id;
         private System.Windows.Forms.TextBox txt_desc;
         private System.Windows.Forms.DataGridView dgv_dep;
         private System.Windows.Forms.Button btn_salvar;

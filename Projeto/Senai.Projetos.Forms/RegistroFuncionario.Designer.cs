@@ -23,7 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -176,8 +176,8 @@
             this.dvg_func.AllowUserToAddRows = false;
             this.dvg_func.AllowUserToDeleteRows = false;
             this.dvg_func.AllowUserToResizeRows = false;
-            dataGridViewCellStyle3.NullValue = "-";
-            this.dvg_func.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.NullValue = "-";
+            this.dvg_func.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dvg_func.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dvg_func.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dvg_func.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -192,6 +192,7 @@
             this.dvg_func.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dvg_func.Size = new System.Drawing.Size(502, 303);
             this.dvg_func.TabIndex = 15;
+            this.dvg_func.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dvg_func_CellContentClick);
             this.dvg_func.SelectionChanged += new System.EventHandler(this.dvg_func_SelectionChanged);
             // 
             // mtxt_tel

@@ -74,7 +74,7 @@ namespace Projeto.Senai.Projetos.Dao {
                 MessageBox.Show(msg, titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch(SqlException ex){
-                msg = "Erro Ao Excluir Dependencia. \n" + ex;
+                msg = "Erro Ao Excluir Dependencia. \n" + ex.Message;
                 titulo = "Erro";
 
                 MessageBox.Show(msg, titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -87,10 +87,10 @@ namespace Projeto.Senai.Projetos.Dao {
 
         public void Salvar(Dependencia dp) {
 
-            if(dp.Id !=0){
-                sql = "INSERT INTO Dependencia (Descricao) VALUES(@desc) ";
+            if(dp.Id !=0) {
+                sql = "UPDATE Dependencia SET Descricao = @desc WHERE IDDependencia = @id";              
             }else{
-                sql = "UPDATE FROM Dependencia SET Descricao = @desc";
+                sql = "INSERT INTO Dependencia (Descricao) VALUES(@desc) ";
             }
 
             try{
@@ -98,6 +98,7 @@ namespace Projeto.Senai.Projetos.Dao {
 
                 SqlCommand cmd = new SqlCommand(sql,connection);
 
+                cmd.Parameters.AddWithValue("@id", dp.Id);
                 cmd.Parameters.AddWithValue("@desc",dp.Descricao);
 
                 cmd.ExecuteNonQuery();
@@ -109,7 +110,7 @@ namespace Projeto.Senai.Projetos.Dao {
 
             }
             catch(SqlException ex){
-                msg = "Erro Ao Salvar Dependencia";
+                msg = "Erro Ao Salvar Dependencia \n" + ex.Message;
                 titulo = "Erro";
                 MessageBox.Show(msg, titulo, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -118,5 +119,7 @@ namespace Projeto.Senai.Projetos.Dao {
             }
 
         }
+
+
     }
 }

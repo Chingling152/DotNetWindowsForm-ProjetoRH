@@ -153,5 +153,9 @@ namespace Projeto.Senai.Projetos.Forms {
             }
 
         }
+
+        private void dvg_func_CellContentClick(object sender, DataGridViewCellEventArgs e) {
+
+        }
     }
 }
