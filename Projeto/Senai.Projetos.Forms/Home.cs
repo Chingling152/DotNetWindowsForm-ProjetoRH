@@ -30,7 +30,8 @@ namespace Projeto {
         }
         //MENU REGISTRO DOS DEPENDENTES
         private void dependenteToolStripMenuItem_Click(object sender, EventArgs e) {
-            
+            DependenteForm frm = new DependenteForm();
+            frm.ShowDialog();
         }
         //MENU REGISTRO DAS DEPENDENCIAS
         private void dependenciaToolStripMenuItem_Click(object sender, EventArgs e) {

@@ -48,11 +48,18 @@
   <ItemGroup>
     <Compile Include="Senai.Projetos.Dao\ConectionFactory.cs" />
     <Compile Include="Senai.Projetos.Dao\DepenDao.cs" />
+    <Compile Include="Senai.Projetos.Dao\DependenteDao.cs" />
     <Compile Include="Senai.Projetos.Forms\DependenciaForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Senai.Projetos.Forms\DependenciaForm.Designer.cs">
       <DependentUpon>DependenciaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Senai.Projetos.Forms\DependenteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Senai.Projetos.Forms\DependenteForm.Designer.cs">
+      <DependentUpon>DependenteForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Senai.Projetos.Forms\Home.cs">
       <SubType>Form</SubType>
@@ -70,6 +77,7 @@
     </Compile>
     <Compile Include="Senai.Projetos.Dao\FuncDao.cs" />
     <Compile Include="Senai.Projetos.Modelos\Dependencia.cs" />
+    <Compile Include="Senai.Projetos.Modelos\Dependente.cs" />
     <Compile Include="Senai.Projetos.Modelos\Funcionario.cs" />
     <Compile Include="Senai.Projetos.Dao\IDao.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -84,6 +92,9 @@
     </Compile>
     <EmbeddedResource Include="Senai.Projetos.Forms\DependenciaForm.resx">
       <DependentUpon>DependenciaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Senai.Projetos.Forms\DependenteForm.resx">
+      <DependentUpon>DependenteForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Senai.Projetos.Forms\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>

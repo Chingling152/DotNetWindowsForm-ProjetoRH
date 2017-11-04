@@ -141,6 +141,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(6);
+            this.MaximizeBox = false;
             this.Name = "DependenciaForm";
             this.Text = "Cadastro De Dependencias";
             this.Load += new System.EventHandler(this.DependenciaForm_Load);

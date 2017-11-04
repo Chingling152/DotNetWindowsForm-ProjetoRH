@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Projeto.Senai.Projetos.Modelos {
     class Dependente {
-
+        //variaveis 
         private long id;
         private string nome;
-        private int cpf;
+        private string cpf;
         private DateTime date;
 
        //COMPOSIÇÃO
@@ -21,7 +21,6 @@ namespace Projeto.Senai.Projetos.Modelos {
             set { func = value; }
         }
 
-
         public Dependencia Depe {
             get { return depe; }
             set { depe = value; }
@@ -32,7 +31,7 @@ namespace Projeto.Senai.Projetos.Modelos {
             set { date = value; }
         }
 
-        public int Cpf {
+        public string Cpf {
             get { return cpf; }
             set { cpf = value; }
         }
