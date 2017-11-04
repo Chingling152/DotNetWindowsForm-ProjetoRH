@@ -21,7 +21,7 @@ namespace Projeto.Senai.Projetos.Dao {
 
         //constructor
         public DepenDao() {
-            connection = new ConectionFactory().GetConection();
+            connection = new ConectionFactory().GetConnection();
         }
 
         //MESMA MERDA DO FuncDao

@@ -91,7 +91,7 @@
             // btn_salvar
             // 
             this.btn_salvar.BackColor = System.Drawing.SystemColors.Control;
-            this.btn_salvar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btn_salvar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.btn_salvar.Location = new System.Drawing.Point(16, 132);
             this.btn_salvar.Name = "btn_salvar";
             this.btn_salvar.Size = new System.Drawing.Size(113, 41);
@@ -103,7 +103,7 @@
             // btn_excluir
             // 
             this.btn_excluir.BackColor = System.Drawing.SystemColors.Control;
-            this.btn_excluir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btn_excluir.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.btn_excluir.Location = new System.Drawing.Point(135, 132);
             this.btn_excluir.Name = "btn_excluir";
             this.btn_excluir.Size = new System.Drawing.Size(113, 41);
@@ -115,7 +115,7 @@
             // btn_limpar
             // 
             this.btn_limpar.BackColor = System.Drawing.SystemColors.Control;
-            this.btn_limpar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btn_limpar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.btn_limpar.Location = new System.Drawing.Point(253, 132);
             this.btn_limpar.Name = "btn_limpar";
             this.btn_limpar.Size = new System.Drawing.Size(113, 41);

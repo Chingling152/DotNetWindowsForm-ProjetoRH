@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Projeto.Senai.Projetos.Modelos {
-    class Funcionario  {
+    class Funcionario {
         //variaveis
         private long id;
         private string nome;
@@ -41,11 +41,11 @@ namespace Projeto.Senai.Projetos.Modelos {
         }
 
         public string Telefone {
-            get {return telefone ;}
-            set{telefone = value ; }
+            get { return telefone; }
+            set { telefone = value; }
         }
 
-        public Funcionario(long id,string nome ,string cpf ,string rg,string email,string telefone){
+        public Funcionario(long id, string nome, string cpf, string rg, string email, string telefone) {
             this.id = id;
             this.nome = nome;
             this.cpf = cpf;
@@ -54,8 +54,11 @@ namespace Projeto.Senai.Projetos.Modelos {
             this.telefone = telefone;
         }
 
-        public Funcionario(){
+        public Funcionario() {
         }
 
+        public override string ToString() {
+            return this.nome;
+        }
     }
 }

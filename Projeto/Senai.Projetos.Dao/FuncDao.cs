@@ -20,7 +20,7 @@ namespace Projeto.Senai.Projetos.Dao {
 
         //constructor
         public FuncDao(){
-            connection = new ConectionFactory().GetConection();
+            connection = new ConectionFactory().GetConnection();
         }
 
         //metodos herdados da interface IDao
@@ -61,8 +61,8 @@ namespace Projeto.Senai.Projetos.Dao {
             } 
             catch(SqlException e){
                 msg = "Erro Ao Consultar Funcionarios Cadastrados \n" +e.Message;
-                titulo = "Erro...";
-                MessageBox.Show(msg,titulo,MessageBoxButtons.OK,MessageBoxIcon.Error);
+                titulo = "Erro : " + e.ErrorCode.ToString();
+                MessageBox.Show(msg,titulo,MessageBoxButtons.OK,MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }           
             finally {
                 connection.Close();
@@ -92,15 +92,15 @@ namespace Projeto.Senai.Projetos.Dao {
                 titulo = "Sucesso";
 
                 //MESSAGEBOX
-                MessageBox.Show(msg,titulo,MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show(msg,titulo,MessageBoxButtons.OK,MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
 
             } 
             catch(SqlException ex){
                 //mensagem de erro 
                 msg = "Erro Ao Excluir Funcionario/n" + ex.Message;
-                titulo = "Erro...";
+                titulo = "Erro : " + ex.ErrorCode.ToString();
 
-                MessageBox.Show(msg,titulo,MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show(msg,titulo,MessageBoxButtons.OK,MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             } 
             finally{
                 //fecha a conexão com o banco de dados
@@ -137,12 +137,12 @@ namespace Projeto.Senai.Projetos.Dao {
                 msg = "Funcionario " + fun.Nome + " Salvo Com Sucesso";
                 titulo = "Salvo...";
 
-                MessageBox.Show(msg,titulo,MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show(msg,titulo,MessageBoxButtons.OK,MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
             }
             catch(SqlException e){
                 msg = "Erro Ao Salvar Funcionario" + e.Message;
-                titulo = "Erro...";
-                MessageBox.Show(msg,titulo,MessageBoxButtons.OK,MessageBoxIcon.Error);
+                titulo = "Erro : " + e.ErrorCode.ToString();
+                MessageBox.Show(msg,titulo,MessageBoxButtons.OK,MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
             finally{
                 connection.Close();
@@ -153,7 +153,7 @@ namespace Projeto.Senai.Projetos.Dao {
             //comando sql
             sql = "SELECT * FROM Funcionario WHERE Cpf = @Cpf";
 
-            //cria um novo objeto do tipo funcionario (com valor nulo pra poder )
+            //cria um novo objeto do tipo funcionario (com valor nulo pra poder ter um valor armazenado mais tarde)
             Funcionario f = null;
 
             //tenta
@@ -189,8 +189,8 @@ namespace Projeto.Senai.Projetos.Dao {
                 }
             } catch (SqlException ex){
                 msg = "Erro Ao Consultar Funcionario \n"+ex.Message;
-                titulo = "Erro...";
-                MessageBox.Show(msg,titulo,MessageBoxButtons.OK,MessageBoxIcon.Error);
+                titulo = "Erro : " + ex.ErrorCode.ToString();
+                MessageBox.Show(msg,titulo,MessageBoxButtons.OK,MessageBoxIcon.Error,MessageBoxDefaultButton.Button1);
             }finally{
                 connection.Close();
             }

@@ -16,12 +16,27 @@ namespace Projeto.Senai.Projetos.Modelos {
         private Dependencia depe;
         private Funcionario func;
 
-        public Funcionario Func {
+
+        public long ID {
+            get { return id; }
+            set { id = value; }
+        }
+
+        public string Nome {
+            get { return nome; }
+            set { nome = value; }
+        }
+        public string Cpf {
+            get { return cpf; }
+            set { cpf = value; }
+        }
+
+        public Funcionario Funcionario {
             get { return func; }
             set { func = value; }
         }
 
-        public Dependencia Depe {
+        public Dependencia Dependencia {
             get { return depe; }
             set { depe = value; }
         }
@@ -29,21 +44,6 @@ namespace Projeto.Senai.Projetos.Modelos {
         public DateTime Data {
             get { return date; }
             set { date = value; }
-        }
-
-        public string Cpf {
-            get { return cpf; }
-            set { cpf = value; }
-        }
-
-        public string Nome {
-            get { return nome; }
-            set { nome = value; }
-        }
-
-        public long ID {
-            get { return id; }
-            set { id = value; }
         }
 
         public Dependente(){

@@ -66,7 +66,7 @@ namespace Projeto.Senai.Projetos.Forms {
             //verifica se o valor é nulo ou vazio
             if(string.IsNullOrEmpty(txt_id.Text)) {
 
-                string msg = "Selecione um funcionario na lista abaixo";
+                string msg = "Selecione uma dependencia na lista abaixo";
                 string titulo = "Operação não Realizada...";
                 MessageBox.Show(msg, titulo, MessageBoxButtons.OK, MessageBoxIcon.Warning);
 

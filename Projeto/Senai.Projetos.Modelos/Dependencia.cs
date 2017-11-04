@@ -29,8 +29,11 @@ namespace Projeto.Senai.Projetos.Modelos {
             this.descricao = desc;
         }
 
-        public Dependencia(){
+        public Dependencia(){           
+        }
 
+        public override string ToString() {
+            return this.descricao;
         }
 
     }
