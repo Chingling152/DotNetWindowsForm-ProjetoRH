@@ -91,7 +91,7 @@ namespace Projeto.Senai.Projetos.Forms {
                 if(resposta.Equals(DialogResult.Yes)) {
                     //exclui o funcionario
                     dao.Excluir(dep);
-                    MessageBox.Show("Dependencia De ID : " + dep.Id + "\nRemovida Com Sucesso");
+                    MessageBox.Show("Excluindo Dependencia De ID : " + dep.Id + "...");
                 }
             }
             //atualiza os dados

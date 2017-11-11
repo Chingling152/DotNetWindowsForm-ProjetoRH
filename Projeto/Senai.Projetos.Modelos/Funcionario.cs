@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace Projeto.Senai.Projetos.Modelos {
     class Funcionario {
-        //variaveis
-        private long id;
-        private string nome;
-        private string cpf;
-        private string rg;
-        private string email;
-        private string telefone;
+        //variaveis 
+        /* Trocar a ordem irá afetar a tabela no datagrid view*/
+        private long id;          //celula 0
+        private string nome;      //celula 1
+        private string cpf;       //celula 2
+        private string rg;        //celula 3
+        private string email;     //celula 4
+        private string telefone;  //celula 5
 
         //encapsulamento das variaveis
         public long ID {

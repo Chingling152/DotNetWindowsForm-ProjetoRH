@@ -58,8 +58,11 @@ namespace Projeto.Senai.Projetos.Forms {
         private void button2_Click(object sender, EventArgs e) {
 
             if(string.IsNullOrEmpty(txt_Nome.Text) ||
-               string.IsNullOrEmpty(txt_Cpf.Text)){
-                MessageBox.Show("Por Favor Preencha Todos Os Dados", "Exceção", MessageBoxButtons.OK, MessageBoxIcon.Information);
+               string.IsNullOrEmpty(txt_Cpf.Text) ||
+               string.IsNullOrEmpty(dtp_Data.Text) ||
+               string.IsNullOrEmpty(cbo_Func.Text) ||
+               string.IsNullOrEmpty(cbo_Depe.Text)){
+                MessageBox.Show("Por Favor Preencha Todos Os Dados", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Information);
             } else {
                 //cria um objeto do tipo dependente
                 Dependente dependente = new Dependente{
@@ -94,7 +97,33 @@ namespace Projeto.Senai.Projetos.Forms {
         }
         //BOTÃO DE EXCLUIR
         private void button1_Click(object sender, EventArgs e) {
+            if(string.IsNullOrEmpty(txt_ID.Text)){
+                string msg = "Selecione um funcionario por favor";
+                string titulo = "Operação não realizada";
+                MessageBox.Show(msg,titulo,MessageBoxButtons.OK,MessageBoxIcon.Asterisk,MessageBoxDefaultButton.Button1);
+            }else{
+                Dependente dp = new Dependente();
 
+                long id = 0;
+                    
+                if(long.TryParse(txt_ID.Text,out id)){
+                    dp.ID = id;
+                }
+
+                DependenteDao dao = new DependenteDao();
+
+                DialogResult resposta = MessageBox.Show("Voce Tem Certeza Que Quer\nExcluir O Dependente De ID : " + dp.ID, "Excluir Dependente...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                
+                if(resposta.Equals(DialogResult.Yes)){
+                    dao.Excluir(dp);
+                    MessageBox.Show("Excluindo Dependente De ID : " + dp.ID + "...");
+                }
+
+                //atualiza os dados
+                PreencheDados();
+                limpar();
+            }
+            
         }
     }
 }

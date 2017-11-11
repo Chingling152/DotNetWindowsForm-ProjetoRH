@@ -17,7 +17,11 @@ namespace Projeto {
         }
         //BOTÃO SAIR
         private void sairToolStripMenuItem_Click(object sender, EventArgs e) {
-            Application.Exit();
+            DialogResult dialogo = MessageBox.Show("Deseja realmente sair?","Sair",MessageBoxButtons.YesNo,MessageBoxIcon.Question,MessageBoxDefaultButton.Button2);
+
+            if(dialogo.Equals(DialogResult.Yes)) {
+                Application.Exit();
+            }
         }
         //CREDITOS
         private void pictureBox1_Click(object sender, EventArgs e) {
@@ -39,8 +43,9 @@ namespace Projeto {
             dependencia.ShowDialog();
         }
 
-        private void Form1_Load(object sender, EventArgs e) {
-
+        private void funcionariosToolStripMenuItem_Click(object sender, EventArgs e) {
+            RelatorioFun relatorio = new RelatorioFun();
+            relatorio.ShowDialog();
         }
     }
 }

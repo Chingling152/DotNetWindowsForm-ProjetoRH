@@ -73,7 +73,31 @@ namespace Projeto.Senai.Projetos.Dao {
         }
 
         public void Excluir(Dependente t) {
-            throw new NotImplementedException();
+            sql = "DELETE FROM Dependente WHERE IDDependente = @id";
+
+            try{
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(sql,connection);
+
+                cmd.Parameters.AddWithValue("@id",t.ID);
+
+                cmd.ExecuteNonQuery();
+
+                msg = "Dependente " + t.Nome + " Excluido Com Sucesso";
+                titulo = "Sucesso";
+
+                //MESSAGEBOX
+                MessageBox.Show(msg, titulo, MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+            }
+            catch(SqlException ex){
+                msg = "Erro Ao Excluir Dependente \n" + ex.Message;
+                titulo = "Erro Nº " + ex.ErrorCode.ToString();
+
+                MessageBox.Show(msg,titulo,MessageBoxButtons.OK,MessageBoxIcon.Error,MessageBoxDefaultButton.Button1);
+            }
+            finally{
+                connection.Close();
+            }
         }
 
         public void Salvar(Dependente t) {

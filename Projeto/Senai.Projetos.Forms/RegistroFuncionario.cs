@@ -54,7 +54,7 @@ namespace Projeto.Senai.Projetos.Forms {
                 if(resposta.Equals(DialogResult.Yes)) {
                     //exclui o funcionario
                     dao.Excluir(fun);
-                    MessageBox.Show("Funcionario De ID : " + fun.ID + "\nRemovido Com Sucesso");
+                    MessageBox.Show("Excluindo Funcionario De ID : " + fun.ID + "...");
                 }
             }
             //atualiza os dados
