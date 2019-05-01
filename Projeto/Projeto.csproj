@@ -55,6 +55,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.5.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Xml.Linq" />
@@ -68,88 +72,95 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EmpresaDataSet.Designer.cs">
+    <Compile Include="Dao\DependenteDao.cs" />
+    <Compile Include="Dao\FuncionarioDao.cs" />
+    <Compile Include="Dao\ConectionFactory.cs" />
+    <Compile Include="Dao\DependenciaDao.cs" />
+    <Compile Include="DataSet\RHDataSet.cs">
+      <DependentUpon>RHDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSet\RHDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>EmpresaDataSet.xsd</DependentUpon>
+      <DependentUpon>RHDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Senai.Projetos.Dao\ConectionFactory.cs" />
-    <Compile Include="Senai.Projetos.Dao\DepenDao.cs" />
-    <Compile Include="Senai.Projetos.Dao\DependenteDao.cs" />
-    <Compile Include="Senai.Projetos.Forms\DependenciaForm.cs">
+    <Compile Include="Forms\DependenciaForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Senai.Projetos.Forms\DependenciaForm.Designer.cs">
+    <Compile Include="Forms\DependenciaForm.Designer.cs">
       <DependentUpon>DependenciaForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Senai.Projetos.Forms\DependenteForm.cs">
+    <Compile Include="Forms\DependenteForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Senai.Projetos.Forms\DependenteForm.Designer.cs">
+    <Compile Include="Forms\DependenteForm.Designer.cs">
       <DependentUpon>DependenteForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Senai.Projetos.Forms\Home.cs">
+    <Compile Include="Forms\Home.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Senai.Projetos.Forms\Home.Designer.cs">
+    <Compile Include="Forms\Home.Designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IFuncionario.cs" />
+    <Compile Include="Interfaces\IPessoa.cs" />
+    <Compile Include="Modelos\Cargo.cs" />
+    <Compile Include="Modelos\Pessoa.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Senai.Projetos.Forms\RegistroFuncionario.cs">
+    <Compile Include="Forms\RegistroFuncionario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Senai.Projetos.Forms\RegistroFuncionario.Designer.cs">
+    <Compile Include="Forms\RegistroFuncionario.Designer.cs">
       <DependentUpon>RegistroFuncionario.cs</DependentUpon>
     </Compile>
-    <Compile Include="Senai.Projetos.Dao\FuncDao.cs" />
-    <Compile Include="Senai.Projetos.Forms\RelatorioFun.cs">
+    <Compile Include="Forms\RelatorioFun.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Senai.Projetos.Forms\RelatorioFun.Designer.cs">
+    <Compile Include="Forms\RelatorioFun.Designer.cs">
       <DependentUpon>RelatorioFun.cs</DependentUpon>
     </Compile>
-    <Compile Include="Senai.Projetos.Modelos\Dependencia.cs" />
-    <Compile Include="Senai.Projetos.Modelos\Dependente.cs" />
-    <Compile Include="Senai.Projetos.Modelos\Funcionario.cs" />
-    <Compile Include="Senai.Projetos.Dao\IDao.cs" />
-    <Compile Include="SqlServerTypes\Loader.cs" />
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
+    <Compile Include="Modelos\TipoDependencia.cs" />
+    <Compile Include="Modelos\Dependente.cs" />
+    <Compile Include="Modelos\Funcionario.cs" />
+    <Compile Include="Interfaces\IDao.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Senai.Projetos.Forms\DependenciaForm.resx">
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <EmbeddedResource Include="Forms\DependenciaForm.resx">
       <DependentUpon>DependenciaForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Senai.Projetos.Forms\DependenteForm.resx">
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DependenteForm.resx">
       <DependentUpon>DependenteForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Senai.Projetos.Forms\Home.resx">
+    <EmbeddedResource Include="Forms\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Senai.Projetos.Forms\RegistroFuncionario.resx">
+    <EmbeddedResource Include="Forms\RegistroFuncionario.resx">
       <DependentUpon>RegistroFuncionario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Senai.Projetos.Forms\RelatorioFun.resx">
+    <EmbeddedResource Include="Forms\RelatorioFun.resx">
       <DependentUpon>RelatorioFun.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Senai.Projetos.Relatorios\Report1.rdlc" />
-    <None Include="EmpresaDataSet.xsc">
-      <DependentUpon>EmpresaDataSet.xsd</DependentUpon>
+    <EmbeddedResource Include="Relatorios\Report1.rdlc" />
+    <None Include="DataSet\RHDataSet.xsc">
+      <DependentUpon>RHDataSet.xsd</DependentUpon>
     </None>
-    <None Include="EmpresaDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>EmpresaDataSet.Designer.cs</LastGenOutput>
+    <None Include="DataSet\RHDataSet.xsd">
       <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RHDataSet.Designer.cs</LastGenOutput>
     </None>
-    <None Include="EmpresaDataSet.xss">
-      <DependentUpon>EmpresaDataSet.xsd</DependentUpon>
+    <None Include="DataSet\RHDataSet.xss">
+      <DependentUpon>RHDataSet.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -181,7 +192,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\logo1.png" />
+    <None Include="Recursos\logo1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
