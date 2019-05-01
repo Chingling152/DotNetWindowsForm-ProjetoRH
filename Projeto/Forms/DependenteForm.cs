@@ -22,7 +22,7 @@ namespace Projeto.Forms {
         }
 
         private void PreencherCbo(){
-            cbo_Depe.DataSource = new DependenciaDao().Consultar();
+            cbo_Depe.DataSource = new TipoDependenciaDao().Consultar();
             cbo_Depe.DisplayMember = "Descricao";
 
             cbo_Func.DataSource = new FuncionarioDao().Consultar();

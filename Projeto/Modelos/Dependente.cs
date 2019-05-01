@@ -14,12 +14,5 @@ namespace Projeto.Modelos {
             this.ID = ID;
             this.Funcionario_ = Funcionario_;
         }
-
-        public Dependente(
-            Funcionario Funcionario_,
-            string Nome, string Cpf, string Rg, string Telefone, DateTime DataNascimento)
-            : base(Nome, Cpf, Rg, Telefone, DataNascimento) {
-            this.Funcionario_ = Funcionario_;
-        }
     }
 }
