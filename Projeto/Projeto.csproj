@@ -102,9 +102,11 @@
     <Compile Include="Forms\Home.Designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IDependente.cs" />
     <Compile Include="Interfaces\IFuncionario.cs" />
     <Compile Include="Interfaces\IPessoa.cs" />
     <Compile Include="Modelos\Cargo.cs" />
+    <Compile Include="Modelos\Funcao.cs" />
     <Compile Include="Modelos\Pessoa.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

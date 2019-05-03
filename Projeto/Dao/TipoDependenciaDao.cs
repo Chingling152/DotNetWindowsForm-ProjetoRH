@@ -1,5 +1,6 @@
 ﻿using Interfaces;
 using Projeto.Modelos;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Windows.Forms;
@@ -10,11 +11,6 @@ namespace Projeto.Dao {
         /// Arquivo de conexão com o banco de dados
         /// </summary>
         private SqlConnection connection;
-        
-        /// <summary>
-        /// String de comando SQL
-        /// </summary>
-        private string sql = null;
 
         /// <summary>
         /// Mensagem de feedback 
@@ -32,7 +28,30 @@ namespace Projeto.Dao {
         }
 
         public List<TipoDependencia> Consultar() {
-            throw new System.NotImplementedException();
+            List<TipoDependencia> tipoDependencias = new List<TipoDependencia>();
+            try {
+                connection.Open();
+
+                SqlCommand comando = new SqlCommand("EXEC VerTodasDependencias",connection);
+                
+                SqlDataReader leitor = comando.ExecuteReader();
+
+                if (leitor.HasRows) {
+                    while (leitor.Read()) {
+                        tipoDependencias.Add(
+                            new TipoDependencia(
+                              id: Convert.ToInt64(leitor["ID"]),
+                              tipoDependencia: leitor["NOME"].ToString()
+                            )  
+                        );
+                    }
+                }
+
+            } finally {
+                connection.Close();
+            }
+            return tipoDependencias;
+
         }
 
         public TipoDependencia Consultar(long id) {

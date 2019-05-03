@@ -18,7 +18,7 @@ namespace Projeto.Modelos {
         }
 
         public override string ToString() {
-            return this.Nome;
+            return Nome;
         }
     }
 }

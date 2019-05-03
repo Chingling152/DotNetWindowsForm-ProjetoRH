@@ -74,3 +74,11 @@ BEGIN
 SELECT * FROM VerRegistros;
 END
 GO
+
+-- Tipos Dependencia
+CREATE PROCEDURE VerTodasDependencias
+AS
+BEGIN
+SELECT * FROM DEPENDENCIAS;
+END
+GO
