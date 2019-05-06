@@ -17,7 +17,7 @@ namespace Projeto.Dao {
 
         //constructor
         public FuncionarioDao(){
-            connection = new ConectionFactory().GetConnection();
+            connection = new ConnectionFactory().GetConnection();
         }
 
         //metodos herdados da interface IDao

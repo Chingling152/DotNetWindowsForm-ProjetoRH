@@ -72,9 +72,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dao\CargoDao.cs" />
     <Compile Include="Dao\DependenteDao.cs" />
     <Compile Include="Dao\FuncionarioDao.cs" />
-    <Compile Include="Dao\ConectionFactory.cs" />
+    <Compile Include="Dao\ConnectionFactory.cs" />
+    <Compile Include="Dao\PessoaDao.cs" />
     <Compile Include="Dao\TipoDependenciaDao.cs" />
     <Compile Include="DataSet\RHDataSet.cs">
       <DependentUpon>RHDataSet.xsd</DependentUpon>

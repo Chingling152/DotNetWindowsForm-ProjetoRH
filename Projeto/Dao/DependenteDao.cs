@@ -1,12 +1,12 @@
 ﻿using System;
-using Interfaces;
+using Projeto.Interfaces;
 using Projeto.Modelos;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace Projeto.Dao {
-    class DependenteDao : IDao<Dependente> {
+    class DependenteDao : IDao<Dependente> , IDependente{
 
         //conexão com banco de dados
         private SqlConnection connection;
@@ -20,7 +20,7 @@ namespace Projeto.Dao {
 
         //construtor
         public DependenteDao() {
-            connection = new ConectionFactory().GetConnection();
+            connection = new ConnectionFactory().GetConnection();
         }
 
         public List<Dependente> Consultar() {
@@ -60,7 +60,6 @@ namespace Projeto.Dao {
                         email: leitor["Email"].ToString(),
                         telefone: leitor["Telefone"].ToString()
                     );
-                    dep.Funcionario = fun;//associa o funcionario ao dependente
                     depen.Add(dep);
                 }
             } catch(SqlException ex) {
@@ -70,6 +69,10 @@ namespace Projeto.Dao {
                 connection.Close();
             }
             return depen;
+        }
+
+        public Dependente Consultar(long id) {
+            throw new NotImplementedException();
         }
 
         public void Excluir(long id) {
@@ -133,6 +136,10 @@ namespace Projeto.Dao {
                 connection.Close();
             }
 
+        }
+
+        public List<Dependente> VerDependentes(long IDFuncionario) {
+            throw new NotImplementedException();
         }
     }
 }

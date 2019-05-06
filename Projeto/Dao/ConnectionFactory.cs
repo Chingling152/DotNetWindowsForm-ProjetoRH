@@ -1,9 +1,14 @@
 ﻿using System.Data.SqlClient;
 
 namespace Projeto.Dao {
-    class ConectionFactory {
-        //Metodo De Conexão Com Banco De Dados
-
+    /// <summary>
+    /// Classe com o unico objetivo de estabelecer conexão com banco de dados
+    /// </summary>
+    class ConnectionFactory {
+        /// <summary>
+        /// Metodo de conexão com banco de dados
+        /// </summary>
+        /// <returns>Retorna uma conexão com o banco de dados</returns>
         public SqlConnection GetConnection(){
             //string de conexão com banco de dados
             // ./ = esse computador (então parece melhor usar o ip do computador onde tem o banco de dados)
@@ -12,7 +17,6 @@ namespace Projeto.Dao {
             SqlConnection connection = new SqlConnection(servidor);
 
             return connection;
-
         }
 
     }

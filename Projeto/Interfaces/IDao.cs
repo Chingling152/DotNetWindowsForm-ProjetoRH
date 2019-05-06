@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Interfaces {
+namespace Projeto.Interfaces {
     /// <summary>
     /// Interface que lida com Alteração Cadastro e Remoção de dados
     /// </summary>

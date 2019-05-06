@@ -1,9 +1,8 @@
-﻿using Interfaces;
-using Projeto.Modelos;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Windows.Forms;
+using Projeto.Interfaces;
+using Projeto.Modelos;
 
 namespace Projeto.Dao {
     class TipoDependenciaDao : IDao<TipoDependencia> {
@@ -13,27 +12,23 @@ namespace Projeto.Dao {
         private SqlConnection connection;
 
         /// <summary>
-        /// Mensagem de feedback 
+        /// Construtor da classe TipoDependenciaDao , Inicia uma conexão com o banco de dados 
         /// </summary>
-        private string msg = null;
-
-        /// <summary>
-        /// Titulo
-        /// </summary>
-        private string titulo = null;
-
-        //constructor
         public TipoDependenciaDao() {
-            connection = new ConectionFactory().GetConnection();
+            connection = new ConnectionFactory().GetConnection();
         }
 
+        /// <summary>
+        /// Procura todos os tipos de dependencias do banco de dados
+        /// </summary>
+        /// <returns>Uma lista com todos os tipos de dependencias</returns>
         public List<TipoDependencia> Consultar() {
             List<TipoDependencia> tipoDependencias = new List<TipoDependencia>();
             try {
                 connection.Open();
 
-                SqlCommand comando = new SqlCommand("EXEC VerTodasDependencias",connection);
-                
+                SqlCommand comando = new SqlCommand("EXEC VerTodasDependencias", connection);
+
                 SqlDataReader leitor = comando.ExecuteReader();
 
                 if (leitor.HasRows) {
@@ -42,7 +37,7 @@ namespace Projeto.Dao {
                             new TipoDependencia(
                               id: Convert.ToInt64(leitor["ID"]),
                               tipoDependencia: leitor["NOME"].ToString()
-                            )  
+                            )
                         );
                     }
                 }
@@ -54,8 +49,35 @@ namespace Projeto.Dao {
 
         }
 
+        /// <summary>
+        /// Procura um tipo de dependencia no ID selecionado
+        /// </summary>
+        /// <param name="id">ID do tipo de dependencia</param>
+        /// <returns>Retorna um tipo de dependencia ou null caso ele não exista</returns>
         public TipoDependencia Consultar(long id) {
-            throw new System.NotImplementedException();
+            TipoDependencia tipoDependencia = null;
+            try {
+                connection.Open();
+
+                SqlCommand comando = new SqlCommand("EXEC VerDependencia @ID", connection);
+                comando.Parameters.AddWithValue("@ID",id);
+
+                SqlDataReader leitor = comando.ExecuteReader();
+
+                if (leitor.HasRows) {
+                    while (leitor.Read()) {
+                        return new TipoDependencia(
+                              id: Convert.ToInt64(leitor["ID"]),
+                              tipoDependencia: leitor["NOME"].ToString()
+                            );
+                    }
+                }
+
+            } finally {
+                connection.Close();
+            }
+            return tipoDependencia;
+
         }
 
         public void Excluir(long id) {
