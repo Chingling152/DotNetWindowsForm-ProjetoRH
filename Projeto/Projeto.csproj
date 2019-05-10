@@ -76,6 +76,7 @@
     <Compile Include="Dao\DependenteDao.cs" />
     <Compile Include="Dao\FuncionarioDao.cs" />
     <Compile Include="Dao\ConnectionFactory.cs" />
+    <Compile Include="Dao\FuncaoDao.cs" />
     <Compile Include="Dao\PessoaDao.cs" />
     <Compile Include="Dao\TipoDependenciaDao.cs" />
     <Compile Include="DataSet\RHDataSet.cs">

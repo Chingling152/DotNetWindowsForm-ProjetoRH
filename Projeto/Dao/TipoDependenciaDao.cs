@@ -55,7 +55,6 @@ namespace Projeto.Dao {
         /// <param name="id">ID do tipo de dependencia</param>
         /// <returns>Retorna um tipo de dependencia ou null caso ele não exista</returns>
         public TipoDependencia Consultar(long id) {
-            TipoDependencia tipoDependencia = null;
             try {
                 connection.Open();
 
@@ -76,7 +75,7 @@ namespace Projeto.Dao {
             } finally {
                 connection.Close();
             }
-            return tipoDependencia;
+            return null;
 
         }
 

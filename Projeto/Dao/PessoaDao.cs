@@ -1,15 +1,18 @@
-﻿using Projeto.Interfaces;
-using Projeto.Modelos;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using Projeto.Interfaces;
+using Projeto.Modelos;
 
 namespace Projeto.Dao {
+    /// <summary>
+    /// 
+    /// </summary>
     class PessoaDao : IDao<Pessoa>, IPessoa {
         /// <summary>
         /// Arquivo de conexão com o banco de dados
         /// </summary>
-        private SqlConnection connection;
+        private readonly SqlConnection connection;
 
         public PessoaDao() {
             connection = new ConnectionFactory().GetConnection();

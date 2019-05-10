@@ -1,33 +1,74 @@
-﻿using Interfaces;
+﻿using System;
 using Projeto.Modelos;
-using System.Collections.Generic;
+using Projeto.Interfaces;
 using System.Data.SqlClient;
+using System.Collections.Generic;
 
 namespace Projeto.Dao {
+    /// <summary>
+    /// Classe responsavel por lidar com alteração , cadastro , listagem e exclusão de cargos
+    /// </summary>
     class CargoDao : IDao<Cargo> {
 
         private SqlConnection connection;
 
-        public string titulo { get; private set; } = null;
-
-        public string mensagem { get; private set; } = null;
-
+        /// <summary>
+        /// Lista todos os Cargos do banco de dados
+        /// </summary>
+        /// <returns>Uma lista com todos os cargos do banco de dados</returns>
         public List<Cargo> Consultar() {
             List<Cargo> cargos = new List<Cargo>();
 
             try {
                 connection.Open();
-                SqlCommand comando = new SqlCommand("EXEC ",connection);
+                SqlCommand comando = new SqlCommand("EXEC VerTodosCargos", connection);
                 SqlDataReader leitor = comando.ExecuteReader();
-            } catch (System.Exception) {
 
+                if (leitor.HasRows) {
+                    while (leitor.Read()) {
+                        cargos.Add(
+                          new Cargo(
+                              ID : Convert.ToInt64(leitor["ID"]),
+                              Nome: leitor["NOME"].ToString()
+                          )
+                        );
+                    }
+                }
+            } catch (Exception) {
                 throw;
+            }finally{
+                connection.Close();
             }
              return cargos;
         }
 
+        /// <summary>
+        /// Lista u mcargo especifico do banco de dados
+        /// </summary>
+        /// <param name="id">ID do cargo selecionado</param>
+        /// <returns>Cargo a ser retornado</returns>
         public Cargo Consultar(long id) {
-            throw new System.NotImplementedException();
+            try {
+                connection.Open();
+                SqlCommand comando = new SqlCommand("EXEC VerCargo @ID", connection);
+                comando.Parameters.AddWithValue("@ID",id);
+                SqlDataReader leitor = comando.ExecuteReader();
+
+                if (leitor.HasRows) {
+                    while (leitor.Read()) {
+                        return 
+                          new Cargo(
+                              ID: Convert.ToInt64(leitor["ID"]),
+                              Nome: leitor["NOME"].ToString()
+                          );
+                    }
+                }
+            } catch (Exception) {
+                throw;
+            } finally {
+                connection.Close();
+            }
+            return null;
         }
 
         public void Excluir(long id) {
