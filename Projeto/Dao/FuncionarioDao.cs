@@ -1,31 +1,30 @@
-﻿using System.Collections.Generic;
-using System.Windows.Forms;
+﻿using System;
 using System.Data.SqlClient;
+using System.Collections.Generic;
+using Projeto.Enums;
 using Projeto.Modelos;
-using Interfaces;
+using Projeto.Interfaces;
 
 namespace Projeto.Dao {
-    class FuncionarioDao : IDao<Funcionario> { // ele herda da InterfaceDao
+    /// <summary>
+    /// Classe responsavel por manipular dados referente aos Funcionarios
+    /// </summary>
+    class FuncionarioDao :  IFuncionario{ // ele herda da Interface IFuncionario que herda de IDao
         //conexão com o banco de dados
-        private SqlConnection connection;
-        //intrução sql
-        private string sql = null;
-        //mensagem do messagebox
-        private string msg = null;
-        //titulo da messagebox
-        private string titulo = null;
+        private readonly SqlConnection connection;
 
-        //constructor
-        public FuncionarioDao(){
-            connection = new ConnectionFactory().GetConnection();
+       /// <summary>
+       /// Construtor da classe Funcionario Dao
+       /// </summary>
+        public FuncionarioDao() {
+            this.connection = ConnectionFactory.GetConnection();
         }
 
-        //metodos herdados da interface IDao
-
+        /// <summary>
+        /// Procura e retorna todos os funcionarios cadastrados no banco de dados
+        /// </summary>
+        /// <returns>Uma lista com todos os funcionarios cadastrados</returns>
         public List<Funcionario> Consultar() {
-            //codigo sql armazenado numa string
-            sql = "SELECT * FROM Funcionario";
-
             //cria uma lista pra armazenar as variaveis
             List<Funcionario> funcs = new List<Funcionario>();
 
@@ -35,7 +34,7 @@ namespace Projeto.Dao {
                 connection.Open();
 
                 //comando sql
-                SqlCommand cmd = new SqlCommand(sql,connection);
+                SqlCommand cmd = new SqlCommand("EXEC VerTodosFuncionarios", connection);
 
                 //cria um leitor de dados
                 SqlDataReader leitor = cmd.ExecuteReader();
@@ -44,22 +43,32 @@ namespace Projeto.Dao {
                 while(leitor.Read()){
                     //cria um novo objeto do tipo funcionario
                     Funcionario f = new Funcionario(
-                        //atribui valor as propriedades do objeto funcionario
-                        id: (long) leitor["IDFuncionario"],
-                        nome: leitor["Nome"].ToString(),
-                        cpf: leitor["CPF"].ToString(),
-                        rg: leitor["RG"].ToString(),
-                        email: leitor["Email"].ToString(),
-                        telefone: leitor["Telefone"].ToString()
-                    );
+                            id: (long)leitor["REGISTRO_FUNCIONARIO"],
+                            idPessoa: (long)leitor["ID_FUNCIONARIO"], 
+                            nome: leitor["NOME_FUNCIONARIO"].ToString(),
+                            cpf: leitor["CPF_FUNCIONARIO"].ToString(),
+                            rg: leitor["RG_FUNCIONARIO"].ToString(),
+                            email: leitor["EMAIL_FUNCIONARIO"].ToString(),
+                            telefone: leitor["TELEFONE_FUNCIONARIO"].ToString(),
+                            dataNascimento: Convert.ToDateTime(leitor["DATA_NASCIMENTO_FUNCIONARIO"]),
+                            funcao: new Funcao(
+                                ID: Convert.ToInt64(leitor["ID_FUNCAO"]),
+                                Descricao: leitor["DESCRICAO"].ToString(),
+                                CargaHoraria: TimeSpan.Parse(leitor["CARGA_HORARIA"].ToString()),
+                                cargo: new Cargo(
+                                    ID: Convert.ToInt64(leitor["ID_CARGO"]),
+                                    Nome: leitor["CARGO"].ToString()
+                                )
+                            ),
+                            salario: Convert.ToDouble(leitor["SALARIO_FUNCIONARIO"]),
+                            situacao: (EnSituacaoFuncionario)Convert.ToInt32(leitor["SITUACAO_FUNCIONARIO"])
+                        );
                     //adiciona funcionario lista de funcionarios
                     funcs.Add(f);
                 }
             } 
-            catch(SqlException e){
-                msg = "Erro Ao Consultar Funcionarios Cadastrados \n" +e.Message;
-                titulo = "Erro : " + e.ErrorCode.ToString();
-                MessageBox.Show(msg,titulo,MessageBoxButtons.OK,MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+            catch(SqlException ex){
+               throw ex;
             }           
             finally {
                 connection.Close();
@@ -67,134 +76,272 @@ namespace Projeto.Dao {
             return funcs;
         }
 
-        public void Excluir(long ID) {
-            //instrução sql
-            sql = "DELETE FROM Funcionario WHERE IDFuncionario = @id";
-
-            try{
-                //abre a conexão com o banco de dados
-                connection.Open();
-
-                //cria um comando sql
-                SqlCommand cmd = new SqlCommand(sql,connection);
-
-                //adiciona valor ao parametro @ID
-                cmd.Parameters.AddWithValue("@id",ID);
-
-                //executa o comando sql no banco de dados
-                cmd.ExecuteNonQuery();
-
-                //mensagem de feedback
-                msg = "Funcionario Excluido Com Sucesso";
-                titulo = "Sucesso";
-
-                //MESSAGEBOX
-                MessageBox.Show(msg,titulo,MessageBoxButtons.OK,MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-
-            } 
-            catch(SqlException ex){
-                //mensagem de erro 
-                msg = "Erro Ao Excluir Funcionario/n" + ex.Message;
-                titulo = "Erro : " + ex.ErrorCode.ToString();
-
-                MessageBox.Show(msg,titulo,MessageBoxButtons.OK,MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-            } 
-            finally{
-                //fecha a conexão com o banco de dados
-                connection.Close();
-            }
-        }
-
-        public void Salvar(Funcionario fun) {
-
-            if(fun.ID != 0){
-                //atualiza se não for igual a 0
-                sql = "UPDATE Funcionario SET Nome=@Nome,Cpf=@Cpf,Rg=@Rg,Email=@Email,Telefone=@Telefone WHERE IDFuncionario = @ID";
-            }else{
-                //cria for igual a 0 
-                //seta a string como um comando de sql
-                sql = "INSERT INTO Funcionario(Nome,Cpf,Rg,Email,Telefone) VALUES(@Nome,@Cpf,@Rg,@Email,@Telefone)";
-            }
-
-            try{               
-                //abre uma conexão com o banco de dados
-                connection.Open();
-                //cria comando sql
-                SqlCommand cmd = new SqlCommand(sql,connection);
-                //ATRIBUI VALORES A STRING SQL
-                cmd.Parameters.AddWithValue("@ID", fun.ID);
-                cmd.Parameters.AddWithValue("@Nome",fun.Nome);
-                cmd.Parameters.AddWithValue("@Cpf",fun.Cpf);
-                cmd.Parameters.AddWithValue("@Rg",fun.Rg);
-                cmd.Parameters.AddWithValue("@Email",fun.Email);
-                cmd.Parameters.AddWithValue("@Telefone",fun.Telefone);
-                //EXECUTA A STRING SQL
-                cmd.ExecuteNonQuery();
-
-                msg = "Funcionario " + fun.Nome + " Salvo Com Sucesso";
-                titulo = "Salvo...";
-
-                MessageBox.Show(msg,titulo,MessageBoxButtons.OK,MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-            }
-            catch(SqlException e){
-                msg = "Erro Ao Salvar Funcionario" + e.Message;
-                titulo = "Erro : " + e.ErrorCode.ToString();
-                MessageBox.Show(msg,titulo,MessageBoxButtons.OK,MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-            }
-            finally{
-                connection.Close();
-            }
-        }
-
-        public Funcionario Consulta(string cpf){
-            //comando sql
-            sql = "SELECT * FROM Funcionario WHERE Cpf = @Cpf";
-
-            //cria um novo objeto do tipo funcionario (com valor nulo pra poder ter um valor armazenado mais tarde)
-            Funcionario funcionario = null;
-
-            //tenta
+        /// <summary>
+        /// Procura um funcionario com o CPF selecionado
+        /// </summary>
+        /// <param name="cpf">CPF do funcionario a ser procurado</param>
+        /// <returns>Um funcionario que tenha o CPF inserido por parametro</returns>
+        public Pessoa Consultar(string cpf) {
             try {
                 //abrir uma conexão com o banco de dados
                 connection.Open();
 
                 //  Criar um comando sql na conexão connection
-                SqlCommand cmd = new SqlCommand(sql,connection);
+                SqlCommand cmd = new SqlCommand("EXEC VerFuncionarioCpf @CPF", connection);
 
                 //adciona parametros no comando sql
-                cmd.Parameters.AddWithValue("@Cpf", cpf);
+                cmd.Parameters.AddWithValue("@CPF", cpf);
 
                 //leitor sql (recebe os dados do banco de dados)
                 //que esta sendo executado pelo cmd
                 SqlDataReader leitor = cmd.ExecuteReader();
 
                 //enquanto tiver dados para ler 
-                while (leitor.Read()){
+                while (leitor.Read()) {
                     //se tem alguma linha que contenha a coluna cpf 
-                        //cria um objeto na variavel nula
-                        funcionario = new Funcionario(
-                            id: (long)leitor["IDFuncionario"],
-                            nome: leitor["Nome"].ToString(),
-                            cpf: leitor["CPF"].ToString(),
-                            rg: leitor["RG"].ToString(),
-                            email: leitor["Email"].ToString(),
-                            telefone: leitor["Telefone"].ToString()
-                        );
-                      
+                    //retorna o funcionario criado
+                    return new Funcionario(
+                        id: (long)leitor["REGISTRO_FUNCIONARIO"],
+                        idPessoa: (long)leitor["ID_FUNCIONARIO"],
+                        nome: leitor["NOME_FUNCIONARIO"].ToString(),
+                        cpf: leitor["CPF_FUNCIONARIO"].ToString(),
+                        rg: leitor["RG_FUNCIONARIO"].ToString(),
+                        email: leitor["EMAIL_FUNCIONARIO"].ToString(),
+                        telefone: leitor["TELEFONE_FUNCIONARIO"].ToString(),
+                        dataNascimento: Convert.ToDateTime(leitor["DATA_NASCIMENTO_FUNCIONARIO"]),
+                        funcao: new Funcao(
+                            ID: Convert.ToInt64(leitor["ID_FUNCAO"]),
+                            Descricao: leitor["DESCRICAO"].ToString(),
+                            CargaHoraria: TimeSpan.Parse(leitor["CARGA_HORARIA"].ToString()),
+                            cargo: new Cargo(
+                                ID: Convert.ToInt64(leitor["ID_CARGO"]),
+                                Nome: leitor["CARGO"].ToString()
+                            )
+                        ),
+                        salario: Convert.ToDouble(leitor["SALARIO_FUNCIONARIO"]),
+                        situacao: (EnSituacaoFuncionario)Convert.ToInt32(leitor["SITUACAO_FUNCIONARIO"])
+                    );
+
                 }
-            } catch (SqlException ex){
-                msg = "Erro Ao Consultar Funcionario \n"+ex.Message;
-                titulo = "Erro : " + ex.ErrorCode.ToString();
-                MessageBox.Show(msg,titulo,MessageBoxButtons.OK,MessageBoxIcon.Error,MessageBoxDefaultButton.Button1);
-            }finally{
+            } catch (SqlException) {
+                throw new Exception("Erro ao se conectar no banco de dados");
+            } finally {
                 connection.Close();
             }
-            return funcionario;
-            
+            return null;
         }
 
+        /// <summary>
+        /// Procura um funcionario no ID selecionado
+        /// </summary>
+        /// <param name="id">ID do funcionario a ser procurado</param>
+        /// <returns>Todas as informações de um funcionario</returns>
         public Funcionario Consultar(long id) {
-            throw new System.NotImplementedException();
+            try {
+                //abrir uma conexão com o banco de dados
+                connection.Open();
+
+                //  Criar um comando sql na conexão connection
+                SqlCommand cmd = new SqlCommand("EXEC VerFuncionario @ID", connection);
+
+                //adciona parametros no comando sql
+                cmd.Parameters.AddWithValue("@ID", id);
+
+                //leitor sql (recebe os dados do banco de dados)
+                //que esta sendo executado pelo cmd
+                SqlDataReader leitor = cmd.ExecuteReader();
+
+                //enquanto tiver dados para ler 
+                while (leitor.Read()) {
+                    //se tem alguma linha que contenha a coluna cpf 
+                    //retorna o funcionario criado
+                    return new Funcionario(
+                        id: (long)leitor["REGISTRO_FUNCIONARIO"],
+                        idPessoa: (long)leitor["ID_FUNCIONARIO"],
+                        nome: leitor["NOME_FUNCIONARIO"].ToString(),
+                        cpf: leitor["CPF_FUNCIONARIO"].ToString(),
+                        rg: leitor["RG_FUNCIONARIO"].ToString(),
+                        email: leitor["EMAIL_FUNCIONARIO"].ToString(),
+                        telefone: leitor["TELEFONE_FUNCIONARIO"].ToString(),
+                        dataNascimento: Convert.ToDateTime(leitor["DATA_NASCIMENTO_FUNCIONARIO"]),
+                        funcao: new Funcao(
+                            ID: Convert.ToInt64(leitor["ID_FUNCAO"]),
+                            Descricao: leitor["DESCRICAO"].ToString(),
+                            CargaHoraria: TimeSpan.Parse(leitor["CARGA_HORARIA"].ToString()),
+                            cargo: new Cargo(
+                                ID: Convert.ToInt64(leitor["ID_CARGO"]),
+                                Nome: leitor["CARGO"].ToString()
+                            )
+                        ),
+                        salario: Convert.ToDouble(leitor["SALARIO_FUNCIONARIO"]),
+                        situacao: (EnSituacaoFuncionario)Convert.ToInt32(leitor["SITUACAO_FUNCIONARIO"])
+                    );
+
+                }
+            } catch (SqlException) {
+                throw new Exception("Erro ao se conectar no banco de dados");
+            } finally {
+                connection.Close();
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Retorna todos os funcionarios de um determinado cargo
+        /// </summary>
+        /// <param name="cargo">Cargo que todos os funcionarios deverão ter em comum</param>
+        /// <returns>Todos os funcionarios que tiverem um determinado cargo</returns>
+        public List<Funcionario> Consultar(Cargo cargo) {
+            //cria uma lista pra armazenar as variaveis
+            List<Funcionario> funcs = new List<Funcionario>();
+
+            //tenta
+            try {
+                //abrir a conexão com o banco
+                connection.Open();
+
+                //comando sql
+                SqlCommand cmd = new SqlCommand("EXEC VerFuncionariosCargo @CARGO", connection);
+
+                //cria um leitor de dados
+                SqlDataReader leitor = cmd.ExecuteReader();
+                cmd.Parameters.AddWithValue("@CARGO",cargo.ID);
+
+                //enquanto o leitor tiver dados para ler
+                while (leitor.Read()) {
+                    //cria um novo objeto do tipo funcionario
+                    Funcionario f = new Funcionario(
+                            id: (long)leitor["REGISTRO_FUNCIONARIO"],
+                            idPessoa: (long)leitor["ID_FUNCIONARIO"],
+                            nome: leitor["NOME_FUNCIONARIO"].ToString(),
+                            cpf: leitor["CPF_FUNCIONARIO"].ToString(),
+                            rg: leitor["RG_FUNCIONARIO"].ToString(),
+                            email: leitor["EMAIL_FUNCIONARIO"].ToString(),
+                            telefone: leitor["TELEFONE_FUNCIONARIO"].ToString(),
+                            dataNascimento: Convert.ToDateTime(leitor["DATA_NASCIMENTO_FUNCIONARIO"]),
+                            funcao: new Funcao(
+                                ID: Convert.ToInt64(leitor["ID_FUNCAO"]),
+                                Descricao: leitor["DESCRICAO"].ToString(),
+                                CargaHoraria: TimeSpan.Parse(leitor["CARGA_HORARIA"].ToString()),
+                                cargo: new Cargo(
+                                    ID: Convert.ToInt64(leitor["ID_CARGO"]),
+                                    Nome: leitor["CARGO"].ToString()
+                                )
+                            ),
+                            salario: Convert.ToDouble(leitor["SALARIO_FUNCIONARIO"]),
+                            situacao: (EnSituacaoFuncionario)Convert.ToInt32(leitor["SITUACAO_FUNCIONARIO"])
+                        );
+                    //adiciona funcionario lista de funcionarios
+                    funcs.Add(f);
+                }
+            } catch (SqlException ex) {
+                throw ex;
+            } finally {
+                connection.Close();
+            }
+            return funcs;
+        }
+
+        /// <summary>
+        /// Procura todos os funcionarios que tenham o salario entre 2 valores inseridos por parametros
+        /// </summary>
+        /// <param name="salarioMin">Menor salario que será procurado</param>
+        /// <param name="salarioMax">Maior salario que será procurado</param>
+        /// <returns>Uma lista com todos os funcionarios</returns>
+        public List<Funcionario> Consultar(double salarioMin, double salarioMax) {
+            //cria uma lista pra armazenar as variaveis
+            List<Funcionario> funcs = new List<Funcionario>();
+
+            //tenta
+            try {
+                //abrir a conexão com o banco
+                connection.Open();
+
+                //comando sql
+                SqlCommand cmd = new SqlCommand("EXEC VerFuncionarioSalario @SALARIO_MIN , @SALARIO_MAX ", connection);
+
+                //cria um leitor de dados
+                SqlDataReader leitor = cmd.ExecuteReader();
+                cmd.Parameters.AddWithValue("@SALARIO_MIN", salarioMin);
+                cmd.Parameters.AddWithValue("@SALARIO_MAX", salarioMax);
+              
+                //enquanto o leitor tiver dados para ler
+                while (leitor.Read()) {
+                    //cria um novo objeto do tipo funcionario
+                    Funcionario f = new Funcionario(
+                            id: (long)leitor["REGISTRO_FUNCIONARIO"],
+                            idPessoa: (long)leitor["ID_FUNCIONARIO"],
+                            nome: leitor["NOME_FUNCIONARIO"].ToString(),
+                            cpf: leitor["CPF_FUNCIONARIO"].ToString(),
+                            rg: leitor["RG_FUNCIONARIO"].ToString(),
+                            email: leitor["EMAIL_FUNCIONARIO"].ToString(),
+                            telefone: leitor["TELEFONE_FUNCIONARIO"].ToString(),
+                            dataNascimento: Convert.ToDateTime(leitor["DATA_NASCIMENTO_FUNCIONARIO"]),
+                            funcao: new Funcao(
+                                ID: Convert.ToInt64(leitor["ID_FUNCAO"]),
+                                Descricao: leitor["DESCRICAO"].ToString(),
+                                CargaHoraria: TimeSpan.Parse(leitor["CARGA_HORARIA"].ToString()),
+                                cargo: new Cargo(
+                                    ID: Convert.ToInt64(leitor["ID_CARGO"]),
+                                    Nome: leitor["CARGO"].ToString()
+                                )
+                            ),
+                            salario: Convert.ToDouble(leitor["SALARIO_FUNCIONARIO"]),
+                            situacao: (EnSituacaoFuncionario)Convert.ToInt32(leitor["SITUACAO_FUNCIONARIO"])
+                        );
+                    //adiciona funcionario lista de funcionarios
+                    funcs.Add(f);
+                }
+            } catch (SqlException ex) {
+                throw ex;
+            } finally {
+                connection.Close();
+            }
+            return funcs;
+        }
+
+        public void Excluir(long ID) {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Cria ou Edita um funcionario (Dependendo do ID)
+        /// </summary>
+        /// <param name="fun">Funcionario a ser Criado/Editado</param>
+        public void Salvar(Funcionario fun) {
+            string comando = "";
+
+            if (fun.ID != 0) {
+                //atualiza se não for igual a 0
+                comando = "UPDATE Funcionario SET Nome=@Nome,Cpf=@Cpf,Rg=@Rg,Email=@Email,Telefone=@Telefone WHERE IDFuncionario = @ID";
+            } else {
+                //cria for igual a 0 
+                //seta a string como um comando de sql
+                comando = "EXEC InserirFuncionario @Nome,@DataNascimento,@Cpf,@Rg,@Telefone,@IdFuncao,@Email,@Salario,@Situacao";
+            }
+
+            try {
+                //abre uma conexão com o banco de dados
+                connection.Open();
+                //cria comando sql
+                SqlCommand cmd = new SqlCommand(comando, connection);
+                //ATRIBUI VALORES A STRING SQL
+                cmd.Parameters.AddWithValue("@ID", fun.ID);
+                cmd.Parameters.AddWithValue("@Nome", fun.Nome);
+                cmd.Parameters.AddWithValue("@DataNascimento", fun.DataNascimento);
+                cmd.Parameters.AddWithValue("@Cpf", fun.Cpf);
+                cmd.Parameters.AddWithValue("@Rg", fun.Rg);
+                cmd.Parameters.AddWithValue("@IdFuncao", fun.Funcao_);
+                cmd.Parameters.AddWithValue("@Email", fun.Email);
+                cmd.Parameters.AddWithValue("@Telefone", fun.Telefone);
+                cmd.Parameters.AddWithValue("@Situacao", fun.Situacao);
+                //EXECUTA O COMANDO SQL
+                cmd.ExecuteNonQuery();
+            } catch (SqlException e) {
+                throw new Exception("Erro Ao Salvar Funcionario\n" + e.Message);
+            } finally {
+                connection.Close();
+            }
         }
     }
 }

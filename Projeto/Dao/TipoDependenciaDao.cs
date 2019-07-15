@@ -5,6 +5,9 @@ using Projeto.Interfaces;
 using Projeto.Modelos;
 
 namespace Projeto.Dao {
+    /// <summary>
+    /// Classe que lida com dados referente a tipos de dependencia entre dependentes e funcionarios
+    /// </summary>
     class TipoDependenciaDao : IDao<TipoDependencia> {
         /// <summary>
         /// Arquivo de conexão com o banco de dados
@@ -15,7 +18,7 @@ namespace Projeto.Dao {
         /// Construtor da classe TipoDependenciaDao , Inicia uma conexão com o banco de dados 
         /// </summary>
         public TipoDependenciaDao() {
-            connection = new ConnectionFactory().GetConnection();
+            connection = ConnectionFactory.GetConnection();
         }
 
         /// <summary>
@@ -83,8 +86,32 @@ namespace Projeto.Dao {
             throw new System.NotImplementedException();
         }
 
+        /// <summary>
+        /// Cria ou edita um registro de Tipo de dependencia no banco de dados
+        /// </summary>
+        /// <param name="item">Tipo de dependencia a ser inserida/editada</param>
         public void Salvar(TipoDependencia item) {
-            throw new System.NotImplementedException();
+            string comando = "";
+            if (item.id!= 0) {
+
+            } else {
+                comando = "EXEC InserirDependencia @NOME";
+            }
+
+            try {
+                //abre uma conexão com o banco de dados
+                connection.Open();
+                //cria comando sql
+                SqlCommand cmd = new SqlCommand(comando, connection);
+                //ATRIBUI VALORES A STRING SQL
+                cmd.Parameters.AddWithValue("@NOME", item.id);
+                //EXECUTA O COMANDO SQL
+                cmd.ExecuteNonQuery();
+            } catch (SqlException e) {
+                throw new Exception("Erro Ao Salvar Dependencia\n" + e.Message);
+            } finally {
+                connection.Close();
+            }
         }
     }
 }

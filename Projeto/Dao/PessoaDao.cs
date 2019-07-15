@@ -6,16 +6,16 @@ using Projeto.Modelos;
 
 namespace Projeto.Dao {
     /// <summary>
-    /// 
+    /// Classe que lida com dados referente a registros de Dependentes e Funcionarios
     /// </summary>
-    class PessoaDao : IDao<Pessoa>, IPessoa {
+    class PessoaDao : IPessoa, IDao<Pessoa> {
         /// <summary>
         /// Arquivo de conexão com o banco de dados
         /// </summary>
         private readonly SqlConnection connection;
 
         public PessoaDao() {
-            connection = new ConnectionFactory().GetConnection();
+            connection = ConnectionFactory.GetConnection();
         }
 
         /// <summary>
@@ -119,6 +119,10 @@ namespace Projeto.Dao {
             throw new System.NotImplementedException();
         }
 
+        /// <summary>
+        /// Edita um registro de uma pessoa
+        /// </summary>
+        /// <param name="item">pessoa a ser criada</param>
         public void Salvar(Pessoa item) {
             throw new System.NotImplementedException();
         }

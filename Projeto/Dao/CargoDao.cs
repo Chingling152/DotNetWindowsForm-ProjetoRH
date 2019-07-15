@@ -10,7 +10,17 @@ namespace Projeto.Dao {
     /// </summary>
     class CargoDao : IDao<Cargo> {
 
+        /// <summary>
+        /// Variavel responsavel pela conexão da aplicação com o banco de dados
+        /// </summary>
         private SqlConnection connection;
+
+        /// <summary>
+        /// Construtor da classe CargoDao
+        /// </summary>
+        public CargoDao() {
+            connection = ConnectionFactory.GetConnection();
+        }
 
         /// <summary>
         /// Lista todos os Cargos do banco de dados
@@ -43,7 +53,7 @@ namespace Projeto.Dao {
         }
 
         /// <summary>
-        /// Lista u mcargo especifico do banco de dados
+        /// Lista um cargo especifico do banco de dados
         /// </summary>
         /// <param name="id">ID do cargo selecionado</param>
         /// <returns>Cargo a ser retornado</returns>

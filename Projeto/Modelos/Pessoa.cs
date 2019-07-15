@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace Projeto.Modelos {
     class Pessoa {
 

@@ -5,13 +5,13 @@ namespace Projeto.Modelos {
         public readonly long ID;
         public readonly string Descricao;
         public readonly TimeSpan CargaHoraria;
-        public readonly long IDCargo;
+        public readonly Cargo cargo;
 
-        public Funcao(long ID, string Descricao, TimeSpan CargaHoraria, long IDCargo) {
+        public Funcao(long ID, string Descricao, TimeSpan CargaHoraria, Cargo cargo) {
             this.ID = ID;
             this.Descricao = Descricao;
             this.CargaHoraria = CargaHoraria;
-            this.IDCargo = IDCargo;
+            this.cargo = cargo;
         }
     }
 }

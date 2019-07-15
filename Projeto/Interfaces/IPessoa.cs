@@ -4,7 +4,7 @@ namespace Projeto.Interfaces {
     /// <summary>
     /// Classe que lida com qualquer dado relacionado tanto a Funcionarios quanto Dependentes
     /// </summary>
-    interface IPessoa {
+    interface IPessoa{
         /// <summary>
         /// Procura qualquer usuario pelo CPF
         /// </summary>

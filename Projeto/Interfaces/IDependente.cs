@@ -5,7 +5,7 @@ namespace Projeto.Interfaces {
     /// <summary>
     /// Interface que lida com dados de Dependentes
     /// </summary>
-    interface IDependente {
+    interface IDependente  : IDao<Dependente> , IPessoa{
         /// <summary>
         /// Procura todos os dependentes de um Funcionario
         /// </summary>

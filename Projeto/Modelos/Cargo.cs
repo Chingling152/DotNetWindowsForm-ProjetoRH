@@ -1,4 +1,7 @@
 ﻿namespace Projeto.Modelos {
+    /// <summary>
+    /// Define um cargo ocupado por um ou mais Funcionarios
+    /// </summary>
     class Cargo {
         /// <summary>
         /// Representa o ID do Cargo

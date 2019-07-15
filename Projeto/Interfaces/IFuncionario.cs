@@ -5,7 +5,7 @@ namespace Projeto.Interfaces {
     /// <summary>
     /// Interface que lida com dados somente relativos a Funcionarios
     /// </summary>
-    interface IFuncionario {
+    interface IFuncionario : IDao<Funcionario>, IPessoa{
         /// <summary>
         /// Busca um grupo de funcionarios pelo cargo
         /// </summary>

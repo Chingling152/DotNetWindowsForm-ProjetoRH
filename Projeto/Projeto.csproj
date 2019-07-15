@@ -87,6 +87,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RHDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Enums\EnSituacaoFuncionario.cs" />
     <Compile Include="Forms\DependenciaForm.cs">
       <SubType>Form</SubType>
     </Compile>
